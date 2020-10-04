@@ -1,58 +1,65 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
+import React from "react";
+import "./App.scss";
 
-function App() {
+import Header from "./components/header/Header";
+import MainNavbar from "./components/Navigation/MainNavbar";
+import Footer from "./components/footer/Footer";
+
+import Home from "./views/Home";
+import UsaNews from "./views/UsaNews";
+import UKNews from "./views/UkNews";
+
+import Category from "./views/Category";
+
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
+const App = () => {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
+      <Header />
+      <Router>
+        <div>
+          <MainNavbar />
+          <Switch>
+            <Route exact path="/">
+              <Home />
+            </Route>
+            <Route path="/usa-news">
+              <UsaNews />
+            </Route>
+            <Route path="/uk-news">
+              <UKNews />
+            </Route>
+            <Route
+              path="/uk-entertainment"
+              component={() => <Category category={`entertainment`} />}
+            />
+            <Route
+              path="/uk-health"
+              component={() => <Category category={`health`} />}
+            />
+            <Route
+              path="/uk-science"
+              component={() => <Category category={`science`} />}
+            />
+            <Route
+              path="/uk-business"
+              component={() => <Category category={`business`} />}
+            />
+            <Route
+              path="/uk-sports"
+              component={() => <Category category={`sports`} />}
+            />
+            <Route
+              path="/uk-technology"
+              component={() => <Category category={`technology`} />}
+            />
+          </Switch>
+        </div>
+      </Router>
+      <Footer />
     </div>
   );
-}
+};
 
 export default App;
