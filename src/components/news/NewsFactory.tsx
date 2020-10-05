@@ -88,20 +88,25 @@ const TopNews: FunctionComponent<NewsProps> = ({
   });
   const [isError, setIsError] = useState(false);
   const [errorMsg, setErrorMsg] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+
 
 
 
   useEffect(() => {
     async function fetchData() {
       setIsError(false);
+      setIsLoading(true)
       // const proxyUrl = "https://cors-anywhere.herokuapp.com/"
       const url = newsUrl;
       try {
         const result = await axios.get(url);
         setQuery(result.data);
+        setIsLoading(false)
       } catch (error) {
         setErrorMsg(error.message);
         setIsError(true);
+        setIsLoading(false)
       }
     }
     fetchData();
@@ -116,9 +121,12 @@ const TopNews: FunctionComponent<NewsProps> = ({
           className={`dev-grid-wrapper__article--column--${topSplit} dev-u-padding-default`}
         >
           {isError && <div>Something went wrong</div>}
+          
           {query.response.results.slice(0, topSplit).map((item) => (
+            
             <Card
               key={item.id}
+              loading={isLoading}
               image={item.fields.thumbnail}
               title={item.fields.headline}
               published={moment(`${item.webPublicationDate}`).fromNow(true)}
@@ -138,7 +146,7 @@ const TopNews: FunctionComponent<NewsProps> = ({
         >
           {query.response.results.slice(topSplit, 100).map((item) => (
             <Card
-         
+            loading={isLoading}
             key={item.id}
             image={item.fields.thumbnail}
             title={item.fields.headline}

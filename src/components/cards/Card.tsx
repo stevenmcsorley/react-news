@@ -2,6 +2,7 @@ import React, { FunctionComponent } from 'react'
 import './Card.scss'
 
 interface CardProps {
+    loading:boolean
     image: string
     title:string
     published: string | Date | number
@@ -17,6 +18,7 @@ interface Links{
 }
 
 const Card: FunctionComponent<CardProps> = ({
+    loading,
     image,
     title,
     published,
@@ -24,7 +26,8 @@ const Card: FunctionComponent<CardProps> = ({
     onClick,
 }) => {
     return (
-        <article>
+        <article className="position-relative">
+            {loading && <div className="loading"></div>}
         <div className='dev-card-base dev-flex-column dev-u-padding-default'>
         <div className='dev-card-base__body dev-card-base__body--grow dev-u-padding-default'>
             <div className="dev-card-base__image" onClick={onClick}>
