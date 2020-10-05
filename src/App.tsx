@@ -5,13 +5,6 @@ import Header from "./components/header/Header";
 import MainNavbar from "./components/Navigation/MainNavbar";
 import Footer from "./components/footer/Footer";
 
-// import Home from "./views/Home";
-
-// import UsaNews from "./views/UsaNews";
-// import UKNews from "./views/UkNews";
-
-// import Category from "./views/Category";
-// import Article from "./views/Article";
 import {CategoryConfig} from "./configs/CategoryConfig"
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
