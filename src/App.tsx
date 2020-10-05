@@ -10,6 +10,7 @@ import UsaNews from "./views/UsaNews";
 import UKNews from "./views/UkNews";
 
 import Category from "./views/Category";
+import Article from "./views/Article";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
@@ -32,11 +33,11 @@ const App = () => {
             </Route>
             <Route
               path="/uk-entertainment"
-              component={() => <Category category={`entertainment`} />}
+              component={() => <Category category={`film`} />}
             />
             <Route
               path="/uk-health"
-              component={() => <Category category={`health`} />}
+              component={() => <Category category={`community`} />}
             />
             <Route
               path="/uk-science"
@@ -48,12 +49,19 @@ const App = () => {
             />
             <Route
               path="/uk-sports"
-              component={() => <Category category={`sports`} />}
+              component={() => <Category category={`sport`} />}
             />
             <Route
               path="/uk-technology"
               component={() => <Category category={`technology`} />}
             />
+
+              <Route
+              path="/article/:id"
+                >
+              <Article />
+            </Route> 
+             
           </Switch>
         </div>
       </Router>

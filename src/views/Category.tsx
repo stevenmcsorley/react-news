@@ -38,7 +38,7 @@ const Category = ({ category }:Category) => {
 
 
   const queryNews = (s: Query) => {
-    return `${s.api}${s.endpoint}?q=${s.q}&qInTitle=${s.qInTitle}&category=${s.category}&pageSize=${s.pageSize}&sortBy=${s.sortBy}&language=${s.language}&country=${s.country}&apiKey=${s.key}`;
+    return `https://content.guardianapis.com/search?order-by=newest&show-fields=all&section=${s.category}&page-size=18&api-key=0d3ae253-e9ba-4bad-814e-69a9a5fda18e`;
   };
 
   return (

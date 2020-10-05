@@ -24,7 +24,7 @@ const UKNews: FunctionComponent = () => {
     api: `${process.env.REACT_APP_API_URL}`,
     country: "gb",
     endpoint: topNews,
-    q: "",
+    q: "uk-news",
     qInTitle: "",
     pageSize: 8,
     sortBy: "publishedAt",
@@ -36,7 +36,7 @@ const UKNews: FunctionComponent = () => {
     api: `${process.env.REACT_APP_API_URL}`,
     country: "",
     endpoint: everything,
-    q: "Uk",
+    q: "uk-politics",
     qInTitle: "Scotland, England, Wales, Ireland",
     domains: 'bbc.co.uk,uk.businessinsider.com,fourfourtwo.com,news.google.com,independent.co.uk,theladbible.com',
     pageSize: 13,
@@ -46,7 +46,7 @@ const UKNews: FunctionComponent = () => {
   };
 
   const queryNews = (s: Query) => {
-    return `${s.api}${s.endpoint}?q=${s.q}&qInTitle=${s.qInTitle}&pageSize=${s.pageSize}&sortBy=${s.sortBy}&domains=${s.domains}&language=${s.language}&country=${s.country}&apiKey=${s.key}`;
+    return `https://content.guardianapis.com/search?order-by=newest&show-fields=all&q=${s.q}&page-size=18&api-key=0d3ae253-e9ba-4bad-814e-69a9a5fda18e`;
   };
 
   return (

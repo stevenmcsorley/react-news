@@ -25,7 +25,7 @@ const UsaNews: FunctionComponent = () => {
       api: `${process.env.REACT_APP_API_URL}`,
       country: "us",
       endpoint: topNews,
-      q: "",
+      q: "us-news",
       qInTitle: "",
       pageSize: 9,
       sortBy: "publishedAt",
@@ -37,7 +37,7 @@ const UsaNews: FunctionComponent = () => {
       api: `${process.env.REACT_APP_API_URL}`,
       country: "",
       endpoint: everything,
-      q: "US",
+      q: "technology",
       qInTitle: "USA, US, Canada, America, United States",
       domains: 'abcnews.go.com, buzzfeed.com, bleacherreport.com, bloomberg.com, cbsnews.com, us.cnn.com, ccn.com, foxnews.com, msnbc.com, nbcnews.com, huffingtonpost.com',
       pageSize: 14,
@@ -47,19 +47,19 @@ const UsaNews: FunctionComponent = () => {
     };
   
     const queryNews = (s: Query) => {
-      return `${s.api}${s.endpoint}?q=${s.q}&qInTitle=${s.qInTitle}&pageSize=${s.pageSize}&sortBy=${s.sortBy}&domains=${s.domains}&language=${s.language}&country=${s.country}&apiKey=${s.key}`;
+      return `https://content.guardianapis.com/search?order-by=newest&show-fields=all&q=${s.q}&page-size=18&api-key=0d3ae253-e9ba-4bad-814e-69a9a5fda18e`;
     };
 
     return (
         <div>
   <TopNews 
   newsUrl={queryNews(queryOne)}
-  topSplit={4}
+  topSplit={3}
   bottomSplit={5}
   />
     <TopNews 
   newsUrl={queryNews(queryTwo)}
-  topSplit={4}
+  topSplit={3}
   bottomSplit={5}
   />
   </div>
