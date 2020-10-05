@@ -1,4 +1,5 @@
 import React from "react";
+import './Navigation.scss'
 import {CategoryConfig} from "../../configs/CategoryConfig"
 
 import { NavLink } from "react-router-dom";
@@ -9,8 +10,9 @@ const MainNavbar = () => {
   return (
     <div className={`dev-grid-wrapper__div--column--0 dev-u-padding-default`}>
       <div>
-        <ul className="nav">
-        <li>
+      <nav>
+        <ul className="menu">
+        <li className="item">
             <NavLink exact to="/">
               Home
             </NavLink>
@@ -24,6 +26,7 @@ const MainNavbar = () => {
           })}
 
         </ul>
+        </nav>
       </div>
     </div>
   );

@@ -25,23 +25,3 @@ body{
   }
 
 
-.nav{
-    padding: 14px 0px;
-    background: red;
-    text-align: left;
-    li{
-        display: inline;
-        background: red;
-        a{
-            color:white;
-            padding: 11px 16px;
-           
-        }
-        a:hover{
-            color:red;
-            background:white;
-            border-bottom:2px solid red;
-            transition: all 0.3s ease-in-out;
-        }
-    }
-}

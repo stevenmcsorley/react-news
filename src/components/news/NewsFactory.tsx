@@ -1,4 +1,5 @@
 import React, { useEffect, useState, FunctionComponent } from "react";
+
 import { useHistory } from 'react-router'
 import axios from "axios";
 import moment from "moment";
@@ -87,10 +88,8 @@ const TopNews: FunctionComponent<NewsProps> = ({
   });
   const [isError, setIsError] = useState(false);
   const [errorMsg, setErrorMsg] = useState(null);
-  // const openInNewTab = (url: string) => {
-  //   const newWindow = window.open(url, "_blank", "noopener,noreferrer");
-  //   if (newWindow) newWindow.opener = null;
-  // };
+
+
 
   useEffect(() => {
     async function fetchData() {
