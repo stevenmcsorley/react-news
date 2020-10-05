@@ -1,49 +1,32 @@
-import React from 'react'
+import React from "react";
+import {CategoryConfig} from "../../configs/CategoryConfig"
 
-import {
-    Link
-  } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
-const MainNavbar = () =>{
+const MainNavbar = () => {
+  const categories = CategoryConfig();
 
-return(
-    <div
-    className={`dev-grid-wrapper__div--column--0 dev-u-padding-default`}
-  >
-    <div>
-    <ul className="nav">
-      <li>
-        <Link to="/">Home</Link>
-      </li>
-      <li>
-        <Link to="/usa-news">USA</Link>
-      </li>
-      <li>
-        <Link to="/uk-news">UK</Link>
-      </li>
-      <li>
-        <Link to="/uk-entertainment">Entertainment</Link>
-      </li>
-      <li>
-        <Link to="/uk-health">Health</Link>
-      </li>
-      <li>
-        <Link to="/uk-science">Science</Link>
-      </li>
-      <li>
-        <Link to="/uk-business">Business</Link>
-      </li>
-      <li>
-        <Link to="/uk-sports">Sports</Link>
-      </li>
-      <li>
-        <Link to="/uk-technology">Technology</Link>
-      </li>
-    </ul>
+  return (
+    <div className={`dev-grid-wrapper__div--column--0 dev-u-padding-default`}>
+      <div>
+        <ul className="nav">
+        <li>
+            <NavLink exact to="/">
+              Home
+            </NavLink>
+          </li>
+          {categories.map((link) => {
+            return (
+              <li>
+              <NavLink exact to={`/${link.sectionId}`}>{link.sectionName}</NavLink>
+            </li>
+            );
+          })}
+
+        </ul>
+      </div>
     </div>
-    </div>
-)
-}
+  );
+};
 
-
-export default MainNavbar
+export default MainNavbar;

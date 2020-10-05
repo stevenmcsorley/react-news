@@ -6,15 +6,20 @@ import MainNavbar from "./components/Navigation/MainNavbar";
 import Footer from "./components/footer/Footer";
 
 import Home from "./views/Home";
-import UsaNews from "./views/UsaNews";
-import UKNews from "./views/UkNews";
+// import UsaNews from "./views/UsaNews";
+// import UKNews from "./views/UkNews";
 
 import Category from "./views/Category";
 import Article from "./views/Article";
+import {CategoryConfig} from "./configs/CategoryConfig"
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 const App = () => {
+  const categories = CategoryConfig();
+
+  //"opinion", "sport", "culture", "lifestyle"
+
   return (
     <div className="App">
       <Header />
@@ -25,43 +30,18 @@ const App = () => {
             <Route exact path="/">
               <Home />
             </Route>
-            <Route path="/usa-news">
-              <UsaNews />
-            </Route>
-            <Route path="/uk-news">
-              <UKNews />
-            </Route>
-            <Route
-              path="/uk-entertainment"
-              component={() => <Category category={`film`} />}
-            />
-            <Route
-              path="/uk-health"
-              component={() => <Category category={`community`} />}
-            />
-            <Route
-              path="/uk-science"
-              component={() => <Category category={`science`} />}
-            />
-            <Route
-              path="/uk-business"
-              component={() => <Category category={`business`} />}
-            />
-            <Route
-              path="/uk-sports"
-              component={() => <Category category={`sport`} />}
-            />
-            <Route
-              path="/uk-technology"
-              component={() => <Category category={`technology`} />}
-            />
 
-              <Route
-              path="/article/:id"
-                >
+            {categories.map((link) => {
+              return (
+                <Route
+                  path={`/${link.sectionId}`}
+                  component={() => <Category category={`${link.sectionId}`} />}
+                />
+              );
+            })}
+            <Route path="/article/:id">
               <Article />
-            </Route> 
-             
+            </Route>
           </Switch>
         </div>
       </Router>
