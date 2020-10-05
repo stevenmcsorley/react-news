@@ -149,7 +149,7 @@ const TopNews: FunctionComponent<NewsProps> = ({
             //   }}
             onClick={() => history.push({
               pathname: `/article/${item.id}`,
-              state: [item.fields] 
+              state: {detail: item.fields } 
              })}
             />
           ))}
