@@ -41,12 +41,23 @@ const Category = ({ category }:Category) => {
     return `https://content.guardianapis.com/search?order-by=newest&show-fields=all&section=${s.category}&page-size=18&api-key=0d3ae253-e9ba-4bad-814e-69a9a5fda18e`;
   };
 
+  const pageConfig ={
+    firstSplitStart: 3,
+    firstSplitEnd: 13,
+    firstGridStart: 1,
+    firstGridEnd: 2,
+    secondSplitStart: 6,
+    secondSplitEnd: 20,
+    secondGridStart:6
+  }
+  // Move this out in to configs
+
   return (
     <div>
       <div>
         <h4>{queryOne.q}</h4>
       </div>
-      <TopNews newsUrl={queryNews(queryOne)} topSplit={3} bottomSplit={5} />
+      <TopNews newsUrl={queryNews(queryOne)} pageLayout={pageConfig} bottomSplit={5} />
     </div>
   );
 };

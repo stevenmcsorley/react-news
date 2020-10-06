@@ -46,21 +46,27 @@ const Home: FunctionComponent = () => {
 
   const queryNews = (s: Query) => {
     // return `${s.api}${s.endpoint}?q=${s.q}&qInTitle=${s.qInTitle}&pageSize=${s.pageSize}&sortBy=${s.sortBy}&domains=${s.domains}&language=${s.language}&country=${s.country}&apiKey=${s.key}`;
-  return `https://content.guardianapis.com/search?order-by=newest&show-fields=all&q=${s.q}&page-size=18&api-key=0d3ae253-e9ba-4bad-814e-69a9a5fda18e`
+  return `https://content.guardianapis.com/search?order-by=newest&show-fields=all&q=${s.q}&page-size=21&api-key=0d3ae253-e9ba-4bad-814e-69a9a5fda18e`
   };
 
-
+const pageConfig ={
+  firstSplitStart: 1,
+  firstSplitEnd: 5,
+  firstGridStart: 1,
+  firstGridEnd: 2,
+  secondSplitStart: 5,
+  secondSplitEnd: 100,
+  secondGridStart:4
+}
 
   return (
     <div>
       <div>
-        <h4>{queryOne.q}</h4>
       </div>
-      <TopNews newsUrl={queryNews(queryOne)} topSplit={3} bottomSplit={5} />
+      <TopNews newsUrl={queryNews(queryOne)} pageLayout={pageConfig} bottomSplit={5} />
       <div>
-        <h4>{queryTwo.q}</h4>
       </div>
-      <TopNews newsUrl={queryNews(queryTwo)} topSplit={3} bottomSplit={5} />
+      <TopNews newsUrl={queryNews(queryTwo)} pageLayout={pageConfig} bottomSplit={5} />
     </div>
   );
 };

@@ -28,14 +28,14 @@ const Card: FunctionComponent<CardProps> = ({
     return (
         <article className="position-relative">
             {loading && <div className="loading"></div>}
-        <div className='dev-card-base dev-flex-column dev-u-padding-default'>
+        <div className='dev-card-base dev-flex-column'>
         <div className='dev-card-base__body dev-card-base__body--grow dev-u-padding-default'>
             <div className="dev-card-base__image" onClick={onClick}>
                 <img src={image ? image: 'https://c.pxhere.com/photos/aa/fa/newspaper_news_information_read_press_daily_newspaper_paper_magazines-811573.jpg!d'} alt='' />
             </div>
             </div>
             <div className="dev-card-base__footer">
-    <h4 className="dev-u-padding-vertical">{title}</h4> 
+    <h4 className="dev-u-padding-horizontal">{title}</h4> 
     <span className="card-badge">{published}</span>
             </div>
             {children && <div className="card__body dev-u-padding-default">{children}</div>}

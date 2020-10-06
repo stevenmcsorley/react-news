@@ -1,112 +1,64 @@
 import React, { useEffect, useState, FunctionComponent } from "react";
 
-import { useHistory } from 'react-router'
+import { useHistory } from "react-router";
 import axios from "axios";
 import moment from "moment";
 import Card from "../cards/Card";
 
+import { Response } from "../../interfaces/INews";
+
 interface NewsProps {
   newsUrl: string;
-  topSplit: number;
+  pageLayout: pageLayout;
   bottomSplit: number;
 }
 
-interface Response {
-  currentPage: number
-  orderBy: string
-  pageSize: number
-  pages: number
-  results: Results[]
-  startIndex: number
-  status: string
-  total: number
-  userTier: string
-}
-
-interface Results {
-  apiUrl: string
-  fields: Fields
-  id: string
-  isHosted: boolean
-  pillarId: string
-  pillarName: string
-  sectionId: string
-  sectionName: string
-  type: string
-  webPublicationDate: string
-  webTitle: string
-  webUrl: string
-}
-
-interface Fields{
-body: string
-bodyText: string
-byline: string
-bylineHtml: string
-charCount: string
-firstPublicationDate: string
-headline: string
-isInappropriateForSponsorship: string
-isLive: string
-isPremoderated: string
-lang: string
-lastModified: string
-legallySensitive: string
-liveBloggingNow: string
-main: string
-productionOffice: string
-publication: string
-shortUrl: string
-shouldHideAdverts: string
-shouldHideReaderRevenue: string
-showAffiliateLinks: string
-showInRelatedContent: string
-standfirst: string
-thumbnail: string
-trailText: string
-wordcount: string
+interface pageLayout{
+  firstSplitStart: number,
+  firstSplitEnd: number,
+  firstGridStart: number,
+  firstGridEnd: number,
+  secondSplitStart: number,
+  secondSplitEnd: number,
+  secondGridStart: number
 }
 
 const TopNews: FunctionComponent<NewsProps> = ({
   newsUrl,
-  topSplit,
+  pageLayout,
   bottomSplit,
 }) => {
-  const history = useHistory()
+  const history = useHistory();
 
   const [query, setQuery] = useState<{ response: Response }>({
-    response: {  
+    response: {
       currentPage: 0,
-      orderBy: '',
+      orderBy: "",
       pageSize: 0,
       pages: 0,
       results: [],
       startIndex: 0,
-      status: '',
+      status: "",
       total: 0,
-      userTier: ''},
+      userTier: "",
+    },
   });
   const [isError, setIsError] = useState(false);
   const [errorMsg, setErrorMsg] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
-
-
-
   useEffect(() => {
     async function fetchData() {
       setIsError(false);
-      setIsLoading(true)
-      // const proxyUrl = "https://cors-anywhere.herokuapp.com/"
-      const url = newsUrl;
+      setIsLoading(true);
       try {
-        const result = await axios.get(url);
+        const result = await axios.get(newsUrl);
         setQuery(result.data);
-        setIsLoading(false)
+        setIsLoading(false);
       } catch (error) {
         setErrorMsg(error.message);
         setIsError(true);
-        setIsLoading(false)
+        setIsLoading(false);
       }
     }
     fetchData();
@@ -117,47 +69,73 @@ const TopNews: FunctionComponent<NewsProps> = ({
   } else {
     return (
       <div>
-        <div
-          className={`dev-grid-wrapper__article--column--${topSplit} dev-u-padding-default`}
-        >
-          {isError && <div>Something went wrong</div>}
-          
-          {query.response.results.slice(0, topSplit).map((item) => (
-            
-            <Card
-              key={item.id}
-              loading={isLoading}
-              image={item.fields.thumbnail}
-              title={item.fields.headline}
-              published={moment(`${item.webPublicationDate}`).fromNow(true)}
-              // onClick={() => {
-              //   openInNewTab(`${item.webUrl}`);
-              // }}
-              onClick={() => history.push({
-               pathname: `/article/${item.id}`,
-               state: { detail: item.fields }
-              })}
-            />
-          ))}
+        <div className={`dev-grid-wrapper__div--column--2`}>
+          <div>
+            <div className={`dev-grid-wrapper__article--column--${pageLayout.firstGridStart}`}>
+              {isError && <div>Something went wrong</div>}
+
+              {query.response.results.slice(0, pageLayout.firstSplitStart).map((item) => (
+                <Card
+                  key={item.id}
+                  loading={isLoading}
+                  image={item.fields.thumbnail}
+                  title={item.fields.headline}
+                  published={moment(`${item.webPublicationDate}`).fromNow(true)}
+                  onClick={() =>
+                    history.push({
+                      pathname: `/article/${item.id}`,
+                      state: { detail: item.fields },
+                    })
+                  }
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* firstSplitStart: 1,
+  firstSplitEnd: 13,
+  firstGridStart: 1,
+  firstGridEnd: 2 */}
+
+          <div>
+            <div className={`dev-grid-wrapper__article--column--${pageLayout.firstGridEnd}`}>
+              {isError && <div>Something went wrong</div>}
+
+              {query.response.results.slice(pageLayout.firstSplitStart, pageLayout.firstSplitEnd).map((item) => (
+                <Card
+                  key={item.id}
+                  loading={isLoading}
+                  image={item.fields.thumbnail}
+                  title={item.fields.headline}
+                  published={moment(`${item.webPublicationDate}`).fromNow(true)}
+                  onClick={() =>
+                    history.push({
+                      pathname: `/article/${item.id}`,
+                      state: { detail: item.fields },
+                    })
+                  }
+                />
+              ))}
+            </div>
+          </div>
         </div>
 
         <div
-          className={`dev-grid-wrapper__article--column--${bottomSplit} dev-u-padding-default`}
+          className={`dev-grid-wrapper__article--column--${pageLayout.secondGridStart} dev-u-padding-default`}
         >
-          {query.response.results.slice(topSplit, 100).map((item) => (
+          {query.response.results.slice(pageLayout.secondSplitStart, pageLayout.secondSplitEnd).map((item) => (
             <Card
-            loading={isLoading}
-            key={item.id}
-            image={item.fields.thumbnail}
-            title={item.fields.headline}
-            published={moment(`${item.webPublicationDate}`).fromNow(true)}
-            // onClick={() => {
-            //   openInNewTab(`${item.webUrl}`);
-            //   }}
-            onClick={() => history.push({
-              pathname: `/article/${item.id}`,
-              state: {detail: item.fields } 
-             })}
+              loading={isLoading}
+              key={item.id}
+              image={item.fields.thumbnail}
+              title={item.fields.headline}
+              published={moment(`${item.webPublicationDate}`).fromNow(true)}
+              onClick={() =>
+                history.push({
+                  pathname: `/article/${item.id}`,
+                  state: { detail: item.fields },
+                })
+              }
             />
           ))}
         </div>
