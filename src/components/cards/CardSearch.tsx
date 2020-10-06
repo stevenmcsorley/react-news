@@ -1,10 +1,9 @@
 import React, { FunctionComponent } from 'react'
-import Skeleton from "react-loading-skeleton";
+
 import './Card.scss'
 
 interface CardProps {
     loading:boolean
-    image: string
     title:string
     published: string | Date | number
     onClick: any | string
@@ -20,7 +19,6 @@ interface Links{
 
 const Card: FunctionComponent<CardProps> = ({
     loading,
-    image,
     title,
     published,
     children,
@@ -28,11 +26,10 @@ const Card: FunctionComponent<CardProps> = ({
 }) => {
     return (
         <article className="position-relative">
-        <div className='dev-card-base dev-flex-column'>
+        <div className='dev-card-base dev-flex-column' onClick={onClick}>
         <div className='dev-card-base__body dev-card-base__body--grow dev-u-padding-default'>
-            <div className="dev-card-base__image" onClick={onClick}>
-                {!loading && <Skeleton height={300} />}
-                <img src={image ? image: 'https://c.pxhere.com/photos/aa/fa/newspaper_news_information_read_press_daily_newspaper_paper_magazines-811573.jpg!d'} alt='' />
+            <div className="dev-card-base__image" >
+            {loading && <div className="loading"></div>}
             </div>
             </div>
             <div className="dev-card-base__footer">

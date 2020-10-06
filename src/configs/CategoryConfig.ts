@@ -20,6 +20,12 @@ export const CategoryConfig = () => {
           sectionId: "money",
           sectionName: "Money",
         },
+        {
+          sectionId: "music",
+          sectionName: "Music",
+        },
+
+        
       ]
 
 }

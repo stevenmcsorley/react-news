@@ -40,7 +40,27 @@ nav {
           text-align: center;
         }
       }
+
+      li.search{
+        margin:0;
+        width:100%;
+        > div {
+          width: 100%;
+        }
+
+        div input[type=text]{
+          width:100%;
+        }
+        div button{
+          width:100%;
+        }
+      }
     }
   }
+ 
+}
+
+.margin-left-auto{
+  margin-left:auto
 }
 

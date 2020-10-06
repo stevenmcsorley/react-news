@@ -11,6 +11,10 @@
   &--x2 {
     margin: $baseUnit * 2;
   }
+  
+  &--4px {
+    margin: $baseUnit / 2;
+  }
 }
 
 .#{$prefix}u-margin-auto-horizontal {
