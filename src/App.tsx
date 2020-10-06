@@ -29,19 +29,19 @@ const App = () => {
           <Switch>
             <Route 
             exact path="/"
-            render={() => <Home/>}
+            component={() => <Home/>}
             />
             {categories.map((link) => {
               return (
                 <Route
-                  path={`/${link.sectionId}`}
-                  render={() => <Category category={`${link.sectionId}`} />}
+                  exact path={`/${link.sectionId}`}
+                  component={() => <Category category={`${link.sectionId}`} />}
                 />
               );
             })}
             <Route 
-            path="/article/:id"
-            render={() => <Article />}
+            exac path="/article/:id"
+            component={() => <Article />}
             />
           
           </Switch>
