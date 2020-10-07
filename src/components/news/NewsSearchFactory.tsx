@@ -86,14 +86,15 @@ const NewsSearch: FunctionComponent<NewsProps> = ({
                 <CardSearch
                   key={index}
                   loading={isLoading}
-        
+                  image={item.blocks.main.elements[0].assets[1].file}
                   title={item.webTitle}
                   published={moment(`${item.webPublicationDate}`).fromNow(true)}
-                  onClick={() =>
+                  onClick={() => 
                     history.push({
-                      pathname: `/article/${item.id}`,
-                      state: { detail: item.blocks.main },
+                      pathname: `/search-article/${item.id}`,
+                      state: { detail: item },
                     })
+                  
                   }
                 />
               ))}
@@ -108,13 +109,14 @@ const NewsSearch: FunctionComponent<NewsProps> = ({
               {query.response.results.slice(pageLayout.firstSplitStart, pageLayout.firstSplitEnd).map((item, index) => (
                 <CardSearch
                 key={index}
+                image={item.blocks.main.elements[0].assets[0].file}
                 loading={isLoading}
                 title={item.webTitle}
                 published={moment(`${item.webPublicationDate}`).fromNow(true)}
                 onClick={() =>
                   history.push({
-                    pathname: `/article/${item.id}`,
-                    state: { detail: item.blocks.main },
+                    pathname: `/search-article/${item.id}`,
+                    state: { detail: item },
                   })
                 }
                 />
@@ -126,17 +128,17 @@ const NewsSearch: FunctionComponent<NewsProps> = ({
         <div
           className={`dev-grid-wrapper__article--column--${pageLayout.secondGridStart} dev-u-padding-default`}
         >
-        
           {query.response.results.slice(pageLayout.secondSplitStart, pageLayout.secondSplitEnd).map((item, index) => (
             <CardSearch
             key={index}
+            image={item.blocks.main.elements[0].assets[0].file}
             loading={isLoading}
             title={item.webTitle}
             published={moment(`${item.webPublicationDate}`).fromNow(true)}
             onClick={() =>
               history.push({
-                pathname: `/article/${item.id}`,
-                state: { detail: item.blocks.main },
+                pathname: `/search-article/${item.id}`,
+                state: { detail: item },
               })
             }
             />

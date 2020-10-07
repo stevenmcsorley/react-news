@@ -52,7 +52,7 @@ const SearchResults = () => {
 
 
   const queryNews = (s: Query) => {
-    return `https://content.guardianapis.com/search?q=${s.category}&page-size=18&api-key=0d3ae253-e9ba-4bad-814e-69a9a5fda18e`;
+    return `https://content.guardianapis.com/search?q=${s.category}&page-size=16&order-by=relevance&show-blocks=all&api-key=0d3ae253-e9ba-4bad-814e-69a9a5fda18e`;
   };
 
   const pageConfig ={

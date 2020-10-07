@@ -73,7 +73,7 @@ export interface Response {
 
   export interface Blocks{
     main: Main
-    body: BodyContent
+    body: BodyContent[]
     totalBodyBlocks: boolean
   }
 
@@ -123,7 +123,30 @@ export interface Response {
     publishedDate:string,
     lastModifiedDate:string,
     contributors:[]
-    elements:[]
+    elements:Elements[]
+  }
+
+  export interface Elements{
+    assets:Assets[],
+    imageTypeData: ImageTypeData
+  }
+
+  export interface Assets{
+    file:string
+  }
+
+  export interface ImageTypeData{
+    alt: string
+    caption: string
+    copyright: string
+    credit: string
+    displayCredit: boolean
+    imageType: string
+    mediaApiUri: string
+    mediaId: string
+    photographer: string
+    source: string
+    suppliersReference: string
   }
 
   export interface News extends Response{

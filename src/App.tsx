@@ -16,6 +16,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 const Home = React.lazy(() => import("./views/Home"));
 const Category = React.lazy(() => import("./views/Category"));
 const Article = React.lazy(() => import("./views/Article"));
+const SearchArticle = React.lazy(() => import("./views/SearchArticle"));
 
 const App = () => {
   const categories = CategoryConfig();
@@ -34,7 +35,7 @@ const App = () => {
             <MainNavbar />
             <Switch>
               <Route exact path="/" component={() => <Home />} />
-              {categories.map((link) => {
+              {categories.map((link, index) => {
                 return (
                   <Route
                     exact
@@ -42,10 +43,13 @@ const App = () => {
                     component={() => (
                       <Category category={`${link.sectionId}`} />
                     )}
+                    key={index}
                   />
                 );
               })}
               <Route exac path="/article/:id" component={() => <Article />} />
+
+              <Route exac path="/search-article/:id" component={() => <SearchArticle />} />
 
               <Route
                 exact

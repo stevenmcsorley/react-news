@@ -2,6 +2,8 @@ import React from "react";
 import { useEffect, useState } from "react";
 import {useLocation } from "react-router";
 
+import {SearchResults} from '../interfaces/INews'
+
 interface Results {
   apiUrl: string;
   fields: Fields;
@@ -51,7 +53,7 @@ interface RouteParams {
 }
 
 interface Location {
-  detail: Fields;
+  detail: SearchResults;
 }
 
 
@@ -61,10 +63,11 @@ const Article = () => {
 
   const location = useLocation<Location>();
 
-  const [pageContent, setPageContentl] = useState<Fields[]>([]);
-
+  const [pageContent, setPageContentl] = useState<SearchResults[]>([]);
+ 
   useEffect(() => {
     setPageContentl([location.state.detail]);
+    
   }, [location]);
   return (
     <div>
@@ -76,10 +79,10 @@ const Article = () => {
           
           <div className='dev-card-base dev-flex-column dev-u-padding-default'>
           <div className='dev-card-base__header dev-u-padding-default'>
-          <h4>{item.headline}</h4>
+          <h4>{item.webTitle}</h4>
               </div>
           <div className='dev-card-base__body dev-card-base__body--grow dev-u-padding-default dev-u-align-left '>
-              <p dangerouslySetInnerHTML={{__html: item.body}}/>
+              <p dangerouslySetInnerHTML={{__html: item.blocks.body[0].bodyHtml}}/>
               </div>
         </div>
           </div>

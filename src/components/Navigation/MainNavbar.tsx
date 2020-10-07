@@ -25,9 +25,9 @@ const MainNavbar = () => {
                   Home
                 </NavLink>
               </li>
-              {categories.map((link) => {
+              {categories.map((link, index) => {
                 return (
-                  <li className="item">
+                  <li className="item" key={index}>
                     <NavLink exact to={`/${link.sectionId}`}>
                       {link.sectionName}
                     </NavLink>

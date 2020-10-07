@@ -11,6 +11,7 @@ const Search = () => {
     if (event.key !== "Enter") {
       return false;
     }
+    return handleOnClick()
   };
 
   const handleOnClick = () => {

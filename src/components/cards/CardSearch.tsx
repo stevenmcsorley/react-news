@@ -3,6 +3,7 @@ import React, { FunctionComponent } from 'react'
 import './Card.scss'
 
 interface CardProps {
+    image: string
     loading:boolean
     title:string
     published: string | Date | number
@@ -19,6 +20,7 @@ interface Links{
 
 const Card: FunctionComponent<CardProps> = ({
     loading,
+    image,
     title,
     published,
     children,
@@ -29,7 +31,9 @@ const Card: FunctionComponent<CardProps> = ({
         <div className='dev-card-base dev-flex-column' onClick={onClick}>
         <div className='dev-card-base__body dev-card-base__body--grow dev-u-padding-default'>
             <div className="dev-card-base__image" >
-            {loading && <div className="loading"></div>}
+            <div className="dev-card-base__image" onClick={onClick}>
+                <img src={image ? image: 'https://c.pxhere.com/photos/aa/fa/newspaper_news_information_read_press_daily_newspaper_paper_magazines-811573.jpg!d'} alt='' />
+            </div>
             </div>
             </div>
             <div className="dev-card-base__footer">
