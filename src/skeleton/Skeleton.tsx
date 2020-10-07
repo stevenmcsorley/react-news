@@ -17,8 +17,8 @@ interface ConfigProps{
       {Array(count)
         .fill(0)
         .map((item, index) => (
-          <article className="position-relative">
-          <div className="dev-card-base dev-flex-column" key={index}>
+          <article className="position-relative" key={index}>
+          <div className="dev-card-base dev-flex-column">
             <div className="dev-card-base__body dev-card-base__body--grow dev-u-padding-default">
               <Skeleton  height={`25vh`}/>
             </div>

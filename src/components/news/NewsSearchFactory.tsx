@@ -2,14 +2,11 @@ import React, { useEffect, useState, FunctionComponent } from "react";
 
 import { useHistory } from "react-router";
 // import Skeleton from "react-loading-skeleton";
-import SkeletonCard from '../../skeleton/Skeleton'
-
+import SkeletonCard from "../../skeleton/Skeleton";
 
 import axios from "axios";
 import moment from "moment";
 import CardSearch from "../cards/CardSearch";
-
-
 
 import { Search } from "../../interfaces/INews";
 
@@ -19,20 +16,17 @@ interface NewsProps {
   bottomSplit: number;
 }
 
-interface pageLayout{
-  firstSplitStart: number,
-  firstSplitEnd: number,
-  firstGridStart: number,
-  firstGridEnd: number,
-  secondSplitStart: number,
-  secondSplitEnd: number,
-  secondGridStart: number
+interface pageLayout {
+  firstSplitStart: number;
+  firstSplitEnd: number;
+  firstGridStart: number;
+  firstGridEnd: number;
+  secondSplitStart: number;
+  secondSplitEnd: number;
+  secondGridStart: number;
 }
 
-const NewsSearch: FunctionComponent<NewsProps> = ({
-  newsUrl,
-  pageLayout,
-}) => {
+const NewsSearch: FunctionComponent<NewsProps> = ({ newsUrl, pageLayout }) => {
   const history = useHistory();
 
   const [query, setQuery] = useState<{ response: Search }>({
@@ -41,108 +35,168 @@ const NewsSearch: FunctionComponent<NewsProps> = ({
       orderBy: "",
       pageSize: 0,
       pages: 0,
-      results: [],
+      results: [{
+        apiUrl: "",
+        blocks: {
+          body: [{
+            attributes: {},
+            bodyHtml: '',
+            bodyTextSummary: '',
+            contributors: [],
+            createdDate: '',
+            elements:[],
+            firstPublishedDate: '',
+            id: '',
+            lastModifiedDate:'',
+            published: true,
+            publishedDate: '',
+          }],
+          main: {
+            attributes: {},
+            bodyHtml: '',
+            bodyTextSummary: '',
+            contributors: [],
+            createdDate: '',
+            elements: [{
+              assets:[{
+                type: '',
+                mimeType: '',
+                file: '',
+                typeData: {
+                  aspectRatio: '',
+                  width: 0,
+                  height: 0
+                }
+              }],
+              imageTypeData: {
+                alt: '',
+                caption: '',
+                copyright: '',
+                credit: '',
+                displayCredit: false,
+                imageType: '',
+                mediaApiUri: '',
+                mediaId: '',
+                photographer: '',
+                source: '',
+                suppliersReference: '',
+              },
+              type: ""
+            }],
+            firstPublishedDate: '',
+            id: '',
+            lastModifiedDate: '',
+            published: true,
+            publishedDate: '',
+          },
+          totalBodyBlocks: 0
+        },
+        id: '',
+        isHosted: false,
+        pillarId: '',
+        pillarName: '',
+        sectionId: '',
+        sectionName: '',
+        type: '',
+        webPublicationDate: '',
+        webTitle: '',
+        webUrl: '',
+      }],
       startIndex: 0,
       status: "",
       total: 0,
-      userTier: "",
+      userTier: ""
     },
   });
   const [isError, setIsError] = useState(false);
-  const [errorMsg, setErrorMsg] = useState(null);
+  // const [errorMsg, setErrorMsg] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    async function fetchData() {
-      setIsError(false);
+    setIsError(false);
       setIsLoading(true);
-      try {
-        const result = await axios.get(newsUrl);
-        
-        setQuery(result.data);
-        setIsLoading(false);
-      } catch (error) {
-        setErrorMsg(error.message);
-        setIsError(true);
-        setIsLoading(false);
-      }
-    }
+
+    const fetchData = async () => {
+      const result = await axios(
+        newsUrl,
+      );
+      setQuery(result.data);
+      setIsLoading(false);
+    };
+ 
     fetchData();
+
+    // let isSubscribed = true
+    // async function fetchData() {
+      
+      
+    //   setIsError(false);
+    //   setIsLoading(true);
+      
+    //   try {
+    //     const result = await axios(newsUrl);
+    //     if(isSubscribed){
+    //     setQuery(result.data);
+    //     }
+    //     setIsLoading(false);
+    //   } catch (error) {
+    //     setErrorMsg(error.message);
+    //     setIsError(true);
+    //     setIsLoading(false);
+    //   }
+
+    // }
+    // fetchData();
+    // console.log("state",isSubscribed)
+    // return () => {
+    //   isSubscribed = false
+    // } 
   }, [newsUrl]);
 
-  if (errorMsg === "Request failed with status code 429") {
+  if (isError) {
     return <h4>Alernative Content</h4>;
   } else {
     return (
       <div>
-        <div className={`dev-grid-wrapper__div--column--2`}>
+        <div className={`dev-grid-wrapper__div--column--1`}>
           <div>
-          {isLoading && <SkeletonCard count={pageLayout.firstSplitStart} grid={pageLayout.firstGridStart}/>}
-            <div className={`dev-grid-wrapper__article--column--${pageLayout.firstGridStart}`}>
+            {isLoading && (
+              <SkeletonCard
+                count={50}
+                grid={0}
+              />
+            )}
+            <div
+              className={`dev-grid-wrapper__article--column--${0}`}
+            >
               {isError && <div>Something went wrong</div>}
-              
-              {query.response.results.slice(0, pageLayout.firstSplitStart).map((item, index) => (
-                
-                <CardSearch
-                  key={index}
-                  loading={isLoading}
-                  image={item.blocks.main.elements[0].assets[1].file}
-                  title={item.webTitle}
-                  published={moment(`${item.webPublicationDate}`).fromNow(true)}
-                  onClick={() => 
-                    history.push({
-                      pathname: `/search-article/${item.id}`,
-                      state: { detail: item },
-                    })
-                  
-                  }
-                />
-              ))}
+
+              {query.response.results.slice(0, 50).map(
+                (item, index) =>
+                  !isLoading && (
+                    <CardSearch
+                      key={index}
+                      loading={isLoading}
+                   pillarName={item.pillarName}
+                   sectionName={item.sectionName}
+                   summary={item.blocks.body[0].bodyTextSummary.slice(0, 240)}
+                      title={item.webTitle}
+                      published={moment(`${item.webPublicationDate}`).fromNow(
+                        true
+                      )}
+                      onClick={() =>
+                        history.push({
+                          pathname: `/search-article/${item.id}`,
+                          state: { detail: item },
+                        })
+                      }
+                    />
+                  )
+              )}
             </div>
           </div>
 
-          <div>
-          {isLoading && <SkeletonCard count={11} grid={pageLayout.firstGridEnd}/>}
-            <div className={`dev-grid-wrapper__article--column--${pageLayout.firstGridEnd}`}>
-              {isError && <div>Something went wrong</div>}
-    
-              {query.response.results.slice(pageLayout.firstSplitStart, pageLayout.firstSplitEnd).map((item, index) => (
-                <CardSearch
-                key={index}
-                image={item.blocks.main.elements[0].assets[0].file}
-                loading={isLoading}
-                title={item.webTitle}
-                published={moment(`${item.webPublicationDate}`).fromNow(true)}
-                onClick={() =>
-                  history.push({
-                    pathname: `/search-article/${item.id}`,
-                    state: { detail: item },
-                  })
-                }
-                />
-              ))}
-            </div>
-          </div>
-        </div>
-        {isLoading && <SkeletonCard count={11} grid={pageLayout.secondGridStart}/>}
-        <div
-          className={`dev-grid-wrapper__article--column--${pageLayout.secondGridStart} dev-u-padding-default`}
-        >
-          {query.response.results.slice(pageLayout.secondSplitStart, pageLayout.secondSplitEnd).map((item, index) => (
-            <CardSearch
-            key={index}
-            image={item.blocks.main.elements[0].assets[0].file}
-            loading={isLoading}
-            title={item.webTitle}
-            published={moment(`${item.webPublicationDate}`).fromNow(true)}
-            onClick={() =>
-              history.push({
-                pathname: `/search-article/${item.id}`,
-                state: { detail: item },
-              })
-            }
-            />
-          ))}
+
         </div>
       </div>
     );
