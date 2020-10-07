@@ -68,10 +68,11 @@ const Article = () => {
   }, [location]);
   return (
     <div>
-      <div>
+      <div className={`dev-grid-wrapper__div--column--3`}>
+        <div></div>
         {pageContent.map((item) => (
           
-        <section>
+        <div>
           
           <div className='dev-card-base dev-flex-column dev-u-padding-default'>
           <div className='dev-card-base__header dev-u-padding-default'>
@@ -81,7 +82,7 @@ const Article = () => {
               <p dangerouslySetInnerHTML={{__html: item.body}}/>
               </div>
         </div>
-          </section>
+          </div>
         ))}
       </div>
     </div>

@@ -72,7 +72,7 @@ const TopNews: FunctionComponent<NewsProps> = ({ newsUrl, pageLayout }) => {
         <div className={`dev-grid-wrapper__div--column--2`}>
           <div>
             {isLoading && (
-              <SkeletonCard count={1} grid={pageLayout.firstGridStart} />
+              <SkeletonCard count={pageLayout.firstSplitStart} grid={pageLayout.firstGridStart} />
             )}
             <div
               className={`dev-grid-wrapper__article--column--${pageLayout.firstGridStart}`}
@@ -81,7 +81,7 @@ const TopNews: FunctionComponent<NewsProps> = ({ newsUrl, pageLayout }) => {
               {query.response.results
                 .slice(0, pageLayout.firstSplitStart)
                 .map((item, index) => (
-                  <Card
+                  !isLoading && <Card
                     key={index}
                     loading={isLoading}
                     image={item.fields.thumbnail}

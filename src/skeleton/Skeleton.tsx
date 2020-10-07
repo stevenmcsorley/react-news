@@ -20,7 +20,7 @@ interface ConfigProps{
           <article className="position-relative">
           <div className="dev-card-base dev-flex-column" key={index}>
             <div className="dev-card-base__body dev-card-base__body--grow dev-u-padding-default">
-              <Skeleton height={200} />
+              <Skeleton  height={`25vh`}/>
             </div>
 
             <div className="card-channel dev-u-padding-default">

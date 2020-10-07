@@ -77,7 +77,7 @@ const NewsSearch: FunctionComponent<NewsProps> = ({
       <div>
         <div className={`dev-grid-wrapper__div--column--2`}>
           <div>
-          {isLoading && <SkeletonCard count={11} grid={pageLayout.firstGridStart}/>}
+          {isLoading && <SkeletonCard count={pageLayout.firstSplitStart} grid={pageLayout.firstGridStart}/>}
             <div className={`dev-grid-wrapper__article--column--${pageLayout.firstGridStart}`}>
               {isError && <div>Something went wrong</div>}
               
