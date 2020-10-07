@@ -25,6 +25,17 @@ nav {
   }
 }
 
+ul[aria-expanded="true"] .item {
+  display: block;
+}
+ul[aria-expanded="false"] .item {
+  display: block;
+}
+
+.burger {
+  display: none;
+}
+
 @media screen and (max-width: 1127px) {
   nav {
     ul {
@@ -34,6 +45,7 @@ nav {
       li {
         display: flex;
         align-items: center;
+        transition: all 0.3s ease-in-out;
         a {
           display: inline-block;
           width: 100%;
@@ -41,26 +53,38 @@ nav {
         }
       }
 
-      li.search{
-        margin:0;
-        width:100%;
+      li.search {
+        margin: 0;
+        width: 100%;
         > div {
           width: 100%;
         }
 
-        div input[type=text]{
-          width:100%;
+        div input[type="text"] {
+          width: 100%;
         }
-        div button{
-          width:100%;
+        div button {
+          width: 100%;
         }
       }
     }
   }
- 
+
+  ul[aria-expanded="true"] .item {
+    display: none;
+  }
+  ul[aria-expanded="false"] .item {
+    display: block;
+  }
+
+  .burger {
+    color: white;
+    text-align: center;
+    width: 100%;
+    display: block;
+  }
 }
 
-.margin-left-auto{
-  margin-left:auto
+.margin-left-auto {
+  margin-left: auto;
 }
-

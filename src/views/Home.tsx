@@ -60,13 +60,12 @@ const pageConfig ={
 }
 
   return (
-    <div>
-      <div>
-      </div>
+    <div className="dev-grid-wrapper__div--column--0">
+    
       <TopNews newsUrl={queryNews(queryOne)} pageLayout={pageConfig} bottomSplit={5} />
-      <div>
-      </div>
+
       <TopNews newsUrl={queryNews(queryTwo)} pageLayout={pageConfig} bottomSplit={5} />
+      
     </div>
   );
 };

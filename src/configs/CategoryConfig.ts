@@ -5,8 +5,24 @@ export const CategoryConfig = () => {
           sectionName: "News",
         },
         {
-          sectionId: "commentisfree",
-          sectionName: "Opinion",
+          sectionId: "technology",
+          sectionName: "Tech",
+        },
+        {
+          sectionId: "artanddesign",
+          sectionName: "Art & Design",
+        },
+        {
+          sectionId: "games",
+          sectionName: "Games",
+        },
+        {
+          sectionId: "fashion",
+          sectionName: "Fashion",
+        },
+        {
+          sectionId: "travel",
+          sectionName: "Travel",
         },
         {
           sectionId: "sport",
@@ -14,7 +30,7 @@ export const CategoryConfig = () => {
         },
         {
           sectionId: "lifeandstyle",
-          sectionName: "Culture",
+          sectionName: "LifeStyle",
         },
         {
           sectionId: "money",
@@ -24,9 +40,17 @@ export const CategoryConfig = () => {
           sectionId: "music",
           sectionName: "Music",
         },
+        {
+          sectionId: "food",
+          sectionName: "Food",
+        },
+        {
+          sectionId: "global-development",
+          sectionName: "Global development",
+        },
 
         
       ]
-
+      
 }
 
