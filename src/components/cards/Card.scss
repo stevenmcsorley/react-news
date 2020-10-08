@@ -13,3 +13,20 @@
     max-height: 100%;
     background:rgb(102, 101, 101);
 }
+
+h4.search-result{
+
+span.title{
+    font-size: 16px;
+    color: #000000;
+    text-decoration: underline;
+    cursor: pointer;
+    
+    :hover{
+        color: lighten(#000000, 10%)
+    }
+    span.time{
+        font-size:10px;
+    }
+}
+}

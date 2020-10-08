@@ -19,7 +19,7 @@ const Category = ({ category }:Category) => {
 
   const queryOne = {
     api: `${process.env.REACT_APP_API_URL}`,
-    endpoint: 'top-headlines',
+    endpoint: 'search',
     q: category,
     pageSize: 49,
     orderBy: "newest",
@@ -29,7 +29,7 @@ const Category = ({ category }:Category) => {
 
 
   const queryNews = (s: Query) => {
-    return `${s.api}/search?order-by=${s.orderBy}&show-fields=all&section=${s.q}&page-size=${s.pageSize}&api-key=${s.key}`;
+    return `${s.api}/${s.endpoint}?order-by=${s.orderBy}&show-fields=all&section=${s.q}&page-size=${s.pageSize}&api-key=${s.key}`;
   };
 
   const pageConfig ={
@@ -45,9 +45,6 @@ const Category = ({ category }:Category) => {
 
   return (
     <div>
-      <div>
-        <h4>{queryOne.q}</h4>
-      </div>
       <TopNews newsUrl={queryNews(queryOne)} pageLayout={pageConfig} bottomSplit={5} />
     </div>
   );

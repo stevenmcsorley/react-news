@@ -105,10 +105,7 @@ const NewsSearch = (NewsProps: NewsProps) => {
                       loading={isLoading}
                       pillarName={item.pillarName}
                       sectionName={item.sectionName}
-                      summary={item.blocks.body[0].bodyTextSummary.slice(
-                        0,
-                        240
-                      )}
+                      summary={item.blocks.body[0].bodyTextSummary.split(" ").splice(0,50).join(" ") + '...'}
                       title={item.webTitle}
                       published={moment(`${item.webPublicationDate}`).fromNow(
                         true

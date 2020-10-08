@@ -33,21 +33,18 @@ const Card: FunctionComponent<CardProps> = ({
 }) => {
   return (
     <article className="position-relative">
-      <div className="dev-card-base dev-flex-column" onClick={onClick}>
+      <div className="dev-card-base dev-flex-column">
         <div className="dev-card-base__body dev-card-base__body--grow dev-u-padding-default">
-          <div className="dev-grid-wrapper__div--column--3">
+          <div className="dev-grid-wrapper__div--column--0">
             <div>
-              <span className="badge">{published}</span>
-            </div>
-            <div>
-              <h4 className="dev-u-padding-horizontal">{title}</h4>
+              <h4 className="dev-u-padding-horizontal search-result" onClick={onClick}><span className="title">{title}</span> <span className="time">{published} ago</span> </h4>
               <p className="dev-u-padding-horizontal">{summary}</p>
-            </div>
-            <div>
               <p className="dev-u-padding-horizontal">
                 {pillarName}, {sectionName}
               </p>
+              
             </div>
+   
           </div>
         </div>
         {children && (

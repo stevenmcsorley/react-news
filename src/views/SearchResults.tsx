@@ -29,7 +29,7 @@ const SearchResults = () => {
     q: term,
     page: page,
     pageSize: 50,
-    orderBy: "relevance",
+    orderBy: "newest",
     showBlocks: "all",
     key: `${process.env.REACT_APP_API_KEY}`,
   };
