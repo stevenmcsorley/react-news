@@ -7,38 +7,29 @@ interface Category{
 }
 
 const Category = ({ category }:Category) => {
-  const topNews = "top-headlines";
 
   interface Query {
     api: string;
     endpoint: string;
-    country?: string;
     q?: string;
-    qInTitle?: string;
-    category?: string;
     pageSize?: number;
-    sortBy?: string;
-    language: string;
+    orderBy?: string;
     key: string;
   }
 
   const queryOne = {
     api: `${process.env.REACT_APP_API_URL}`,
-    country: "gb",
-    endpoint: topNews,
-    q: "",
-    qInTitle: "",
-    category: category,
-    pageSize: 13,
-    sortBy: "publishedAt",
-    language: "en",
+    endpoint: 'top-headlines',
+    q: category,
+    pageSize: 49,
+    orderBy: "newest",
     key: `${process.env.REACT_APP_API_KEY}`,
   };
 
 
 
   const queryNews = (s: Query) => {
-    return `https://content.guardianapis.com/search?order-by=newest&show-fields=all&section=${s.category}&page-size=49&api-key=0d3ae253-e9ba-4bad-814e-69a9a5fda18e`;
+    return `${s.api}/search?order-by=${s.orderBy}&show-fields=all&section=${s.q}&page-size=${s.pageSize}&api-key=${s.key}`;
   };
 
   const pageConfig ={
