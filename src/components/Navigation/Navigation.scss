@@ -1,6 +1,6 @@
 nav {
   // padding: 14px 0px;
-  background: red;
+  background: rgb(12, 12, 15);;
   text-align: left;
   ul {
     display: flex;
@@ -8,18 +8,23 @@ nav {
 
   li {
     align-items: center;
-    background: red;
+    background: rgb(12, 12, 15);;
 
     a {
       color: white;
       padding: 11px 16px;
       display: block;
-      border-bottom: 2px solid red;
+      border-bottom: 2px solid rgb(12, 12, 15);
+    }
+    a.active{
+      background:white;
+      color:rgb(12, 12, 15);
+      border-bottom: 2px solid deeppink;
     }
     a:hover {
-      color: red;
+      color: rgb(12, 12, 15);;
       background: white;
-      border-bottom: 2px solid red;
+      border-bottom: 2px solid deeppink;
       transition: all 0.3s ease-in-out;
     }
   }
@@ -60,7 +65,7 @@ ul[aria-expanded="false"] .item {
           width: 100%;
         }
 
-        div input[type="text"] {
+        div input[type="search"] {
           width: 100%;
         }
         div button {

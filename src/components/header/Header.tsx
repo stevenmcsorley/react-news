@@ -5,7 +5,7 @@ const Header = () => {
   return (
     <div className="dev-u-padding-horizontal">
       <div
-        className={`dev-grid-wrapper__div--column--4 dev-u-padding-horizontal`}
+        className={`dev-grid-wrapper__div--column--0`}
       >
         <div>
           <a href="/" className="logo">

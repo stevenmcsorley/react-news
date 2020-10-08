@@ -29,6 +29,7 @@ const Search = () => {
   return (
     <div className="dev-u-margin-default--4px">
       <input
+      className="search"
         type="search"
         placeholder="Search"
         onKeyUp={handleSearchChange}

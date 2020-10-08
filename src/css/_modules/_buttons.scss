@@ -2,7 +2,7 @@
   border:none;
   padding: $baseUnit $baseUnit * 3;
   // margin: $baseUnit * 2 0px $baseUnit;
-  background:#b51506;
+  background:#484040;
   color: #ffffff;
   font-size: $baseUnit * 2 - 2;
   box-shadow: $box-shadow-level-1;
@@ -25,7 +25,7 @@
 
   &:hover {
     cursor: pointer;
-    background: darken(#b51506, 10%);
+    background: darken(green, 10%);
     box-shadow: $box-shadow-level-2;
     color: #ffffff;
   }
