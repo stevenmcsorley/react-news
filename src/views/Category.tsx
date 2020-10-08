@@ -38,7 +38,7 @@ const Category = ({ category }:Category) => {
 
 
   const queryNews = (s: Query) => {
-    return `https://content.guardianapis.com/search?order-by=newest&show-fields=all&section=${s.category}&page-size=25&api-key=0d3ae253-e9ba-4bad-814e-69a9a5fda18e`;
+    return `https://content.guardianapis.com/search?order-by=newest&show-fields=all&section=${s.category}&page-size=49&api-key=0d3ae253-e9ba-4bad-814e-69a9a5fda18e`;
   };
 
   const pageConfig ={
@@ -47,7 +47,7 @@ const Category = ({ category }:Category) => {
     firstGridStart: 1,
     firstGridEnd: 2,
     secondSplitStart: 13,
-    secondSplitEnd: 25,
+    secondSplitEnd: 50,
     secondGridStart:6
   }
   // Move this out in to configs

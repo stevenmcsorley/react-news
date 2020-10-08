@@ -31,77 +31,11 @@ const NewsSearch: FunctionComponent<NewsProps> = ({ newsUrl, pageLayout }) => {
 
   const [query, setQuery] = useState<{ response: Search }>({
     response: {
-      currentPage: 0,
+      currentPage: 1,
       orderBy: "",
-      pageSize: 0,
+      pageSize: 50,
       pages: 0,
-      results: [{
-        apiUrl: "",
-        blocks: {
-          body: [{
-            attributes: {},
-            bodyHtml: '',
-            bodyTextSummary: '',
-            contributors: [],
-            createdDate: '',
-            elements:[],
-            firstPublishedDate: '',
-            id: '',
-            lastModifiedDate:'',
-            published: true,
-            publishedDate: '',
-          }],
-          main: {
-            attributes: {},
-            bodyHtml: '',
-            bodyTextSummary: '',
-            contributors: [],
-            createdDate: '',
-            elements: [{
-              assets:[{
-                type: '',
-                mimeType: '',
-                file: '',
-                typeData: {
-                  aspectRatio: '',
-                  width: 0,
-                  height: 0
-                }
-              }],
-              imageTypeData: {
-                alt: '',
-                caption: '',
-                copyright: '',
-                credit: '',
-                displayCredit: false,
-                imageType: '',
-                mediaApiUri: '',
-                mediaId: '',
-                photographer: '',
-                source: '',
-                suppliersReference: '',
-              },
-              type: ""
-            }],
-            firstPublishedDate: '',
-            id: '',
-            lastModifiedDate: '',
-            published: true,
-            publishedDate: '',
-          },
-          totalBodyBlocks: 0
-        },
-        id: '',
-        isHosted: false,
-        pillarId: '',
-        pillarName: '',
-        sectionId: '',
-        sectionName: '',
-        type: '',
-        webPublicationDate: '',
-        webTitle: '',
-        webUrl: '',
-      }],
+      results: [],
       startIndex: 0,
       status: "",
       total: 0,
@@ -158,6 +92,13 @@ const NewsSearch: FunctionComponent<NewsProps> = ({ newsUrl, pageLayout }) => {
   } else {
     return (
       <div>
+        <div className={`dev-grid-wrapper__div--column--1`}>
+          <div>
+    <p>{query.response.startIndex} of {query.response.total} Results</p>
+    <p>{query.response.currentPage} of {query.response.pages} Pages</p>
+
+          </div>
+        </div>
         <div className={`dev-grid-wrapper__div--column--1`}>
           <div>
             {isLoading && (
