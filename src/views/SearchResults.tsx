@@ -2,71 +2,40 @@ import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 
 import NewsSearch from "../components/news/NewsSearchFactory";
-import Paginate from "../components/pagination/Paginate";
-
-interface SearchQuery {
-  searchQuery: string;
-}
 
 const SearchResults = () => {
-  const topNews = "top-headlines";
-
-  interface Paginate {
-    page: number;
-  }
-
-  const [page, setPage] = useState(1);
-
   interface LocationState {
     term: string;
   }
 
   const location = useLocation<LocationState>();
-
   const { term } = location.state;
-
-  const pagechangeForward = (e: number) => {
-    setPage(e);
-  };
-
-  const pagechangeRewind = (e: number) => {
-    setPage(e);
-  };
+  const [page, setPage] = useState<number>(1);
 
   interface Query {
     api: string;
     endpoint: string;
-    country?: string;
     q?: string;
-    qInTitle?: string;
-    category?: string;
+    page: number;
     pageSize?: number;
-    sortBy?: string;
-    language: string;
+    orderBy?: string;
+    showBlocks: string;
     key: string;
   }
 
-  const queryOne = {
+  const queryParams = {
     api: `${process.env.REACT_APP_API_URL}`,
-    country: "gb",
-    endpoint: topNews,
-    q: "",
-    qInTitle: "",
-    category: term,
-    pageSize: 13,
-    sortBy: "publishedAt",
-    language: "en",
+    endpoint: "search",
+    q: term,
+    page: page,
+    pageSize: 50,
+    orderBy: "relevance",
+    showBlocks: "all",
     key: `${process.env.REACT_APP_API_KEY}`,
   };
 
-  const pagination = {
-    page: page,
-    offset: 50,
-    total: 0,
-  };
-
   const queryNews = (s: Query) => {
-    return `https://content.guardianapis.com/search?q=${s.category}&page=${pagination.page}&page-size=50&order-by=relevance&show-blocks=all&api-key=0d3ae253-e9ba-4bad-814e-69a9a5fda18e`;
+    return `${s.api}/${s.endpoint}?q=${s.q}&page=${s.page}&page-size=${s.pageSize}&order-by=${s.orderBy}&show-blocks=${s.showBlocks}&api-key=${s.key}`;
   };
 
   const pageConfig = {
@@ -82,17 +51,12 @@ const SearchResults = () => {
 
   return (
     <div>
-      <div>
-        <h4>{queryOne.q}</h4>
-      </div>
-      <Paginate
-        paginateForward={pagechangeForward}
-        paginateRewind={pagechangeRewind}
-      />
       <NewsSearch
-        newsUrl={queryNews(queryOne)}
+        newsUrl={queryNews(queryParams)}
         pageLayout={pageConfig}
         bottomSplit={5}
+        next={(currentPage: number) => setPage(currentPage)}
+        prev={(currentPage: number) => setPage(currentPage)}
       />
     </div>
   );

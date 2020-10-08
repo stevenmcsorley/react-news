@@ -1,12 +1,12 @@
-import React, { useEffect, useState, FunctionComponent } from "react";
+import React, { useEffect, useState } from "react";
 
 import { useHistory } from "react-router";
-// import Skeleton from "react-loading-skeleton";
 import SkeletonCard from "../../skeleton/Skeleton";
 
 import axios from "axios";
 import moment from "moment";
 import CardSearch from "../cards/CardSearch";
+import Paginate from "../pagination/Paginate";
 
 import { Search } from "../../interfaces/INews";
 
@@ -14,6 +14,8 @@ interface NewsProps {
   newsUrl: string;
   pageLayout: pageLayout;
   bottomSplit: number;
+  next: Function;
+  prev: Function;
 }
 
 interface pageLayout {
@@ -26,14 +28,14 @@ interface pageLayout {
   secondGridStart: number;
 }
 
-const NewsSearch: FunctionComponent<NewsProps> = ({ newsUrl, pageLayout }) => {
+const NewsSearch = (NewsProps: NewsProps) => {
   const history = useHistory();
 
   const [query, setQuery] = useState<{ response: Search }>({
     response: {
       currentPage: 1,
       orderBy: "",
-      pageSize: 50,
+      pageSize: 0,
       pages: 0,
       results: [],
       startIndex: 0,
@@ -42,6 +44,22 @@ const NewsSearch: FunctionComponent<NewsProps> = ({ newsUrl, pageLayout }) => {
       userTier: "",
     },
   });
+
+  const pagechangeRewind = (current_page: number) => {
+    if (current_page > 1) {
+      current_page--;
+      return NewsProps.next(current_page);
+    }
+  };
+
+  const pagechangeForward = (current_page: number) => {
+    if (current_page < query.response.pages) {
+      current_page++;
+
+      return NewsProps.prev(current_page);
+    }
+  };
+
   const [isError, setIsError] = useState(false);
 
   const [isLoading, setIsLoading] = useState(false);
@@ -51,13 +69,13 @@ const NewsSearch: FunctionComponent<NewsProps> = ({ newsUrl, pageLayout }) => {
     setIsLoading(true);
 
     const fetchData = async () => {
-      const result = await axios(newsUrl);
+      const result = await axios(NewsProps.newsUrl);
       setQuery(result.data);
       setIsLoading(false);
     };
 
     fetchData();
-  }, [newsUrl]);
+  }, [NewsProps.newsUrl]);
 
   if (isError) {
     return <h4>Alernative Content</h4>;
@@ -66,12 +84,11 @@ const NewsSearch: FunctionComponent<NewsProps> = ({ newsUrl, pageLayout }) => {
       <div>
         <div className={`dev-grid-wrapper__div--column--1`}>
           <div>
-            <p>
-              {query.response.startIndex} of {query.response.total} Results
-            </p>
-            <p>
-              {query.response.currentPage} of {query.response.pages} Pages
-            </p>
+            <Paginate
+              paginateForward={pagechangeForward}
+              paginateRewind={pagechangeRewind}
+              paginationLive={query.response}
+            />
           </div>
         </div>
         <div className={`dev-grid-wrapper__div--column--1`}>

@@ -3,26 +3,42 @@ import React from "react";
 interface PageProps {
   paginateForward?: any;
   paginateRewind?: any;
+  paginationLive?: any;
 }
 
-let pager = 1;
-const Paginate = (props: PageProps) => {
-  const pagechangeForward = () => {
-    pager++;
+const Paginate = (
+  props: PageProps,
+  {
+    paginateForward,
+    paginateRewind,
+  }: { paginateForward: number; paginateRewind: number }
+) => {
+  let curr = props.paginationLive.currentPage;
 
-    return props.paginateForward(pager);
+  const pagechangeForward = () => {
+    return props.paginateForward(curr);
   };
 
   const pagechangeRewind = () => {
-    pager--;
-
-    return props.paginateForward(pager);
+    return props.paginateRewind(curr);
   };
 
   return (
     <div>
-      <button onClick={pagechangeRewind}>Previous</button> --
-      <button onClick={pagechangeForward}>Next</button>
+      <p>
+        {props.paginationLive.startIndex} to{" "}
+        {props.paginationLive.startIndex + props.paginationLive.pageSize - 1} of{" "}
+        {props.paginationLive.total} Results
+      </p>
+      <button className="dev-btn" onClick={pagechangeRewind}>
+        Previous
+      </button>
+      <button className="dev-btn" onClick={pagechangeForward}>
+        Next
+      </button>
+      <p>
+        {props.paginationLive.currentPage} of {props.paginationLive.pages} Pages
+      </p>
     </div>
   );
 };
