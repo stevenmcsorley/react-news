@@ -39,52 +39,24 @@ const NewsSearch: FunctionComponent<NewsProps> = ({ newsUrl, pageLayout }) => {
       startIndex: 0,
       status: "",
       total: 0,
-      userTier: ""
+      userTier: "",
     },
   });
   const [isError, setIsError] = useState(false);
-  // const [errorMsg, setErrorMsg] = useState(null);
+
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     setIsError(false);
-      setIsLoading(true);
+    setIsLoading(true);
 
     const fetchData = async () => {
-      const result = await axios(
-        newsUrl,
-      );
+      const result = await axios(newsUrl);
       setQuery(result.data);
       setIsLoading(false);
     };
- 
+
     fetchData();
-
-    // let isSubscribed = true
-    // async function fetchData() {
-      
-      
-    //   setIsError(false);
-    //   setIsLoading(true);
-      
-    //   try {
-    //     const result = await axios(newsUrl);
-    //     if(isSubscribed){
-    //     setQuery(result.data);
-    //     }
-    //     setIsLoading(false);
-    //   } catch (error) {
-    //     setErrorMsg(error.message);
-    //     setIsError(true);
-    //     setIsLoading(false);
-    //   }
-
-    // }
-    // fetchData();
-    // console.log("state",isSubscribed)
-    // return () => {
-    //   isSubscribed = false
-    // } 
   }, [newsUrl]);
 
   if (isError) {
@@ -94,22 +66,18 @@ const NewsSearch: FunctionComponent<NewsProps> = ({ newsUrl, pageLayout }) => {
       <div>
         <div className={`dev-grid-wrapper__div--column--1`}>
           <div>
-    <p>{query.response.startIndex} of {query.response.total} Results</p>
-    <p>{query.response.currentPage} of {query.response.pages} Pages</p>
-
+            <p>
+              {query.response.startIndex} of {query.response.total} Results
+            </p>
+            <p>
+              {query.response.currentPage} of {query.response.pages} Pages
+            </p>
           </div>
         </div>
         <div className={`dev-grid-wrapper__div--column--1`}>
           <div>
-            {isLoading && (
-              <SkeletonCard
-                count={50}
-                grid={0}
-              />
-            )}
-            <div
-              className={`dev-grid-wrapper__article--column--${0}`}
-            >
+            {isLoading && <SkeletonCard count={50} grid={0} />}
+            <div className={`dev-grid-wrapper__article--column--${0}`}>
               {isError && <div>Something went wrong</div>}
 
               {query.response.results.slice(0, 50).map(
@@ -118,9 +86,12 @@ const NewsSearch: FunctionComponent<NewsProps> = ({ newsUrl, pageLayout }) => {
                     <CardSearch
                       key={index}
                       loading={isLoading}
-                   pillarName={item.pillarName}
-                   sectionName={item.sectionName}
-                   summary={item.blocks.body[0].bodyTextSummary.slice(0, 240)}
+                      pillarName={item.pillarName}
+                      sectionName={item.sectionName}
+                      summary={item.blocks.body[0].bodyTextSummary.slice(
+                        0,
+                        240
+                      )}
                       title={item.webTitle}
                       published={moment(`${item.webPublicationDate}`).fromNow(
                         true
@@ -136,8 +107,6 @@ const NewsSearch: FunctionComponent<NewsProps> = ({ newsUrl, pageLayout }) => {
               )}
             </div>
           </div>
-
-
         </div>
       </div>
     );

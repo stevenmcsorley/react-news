@@ -1,7 +1,7 @@
 import React, { useEffect, useState, FunctionComponent } from "react";
 
 import { useHistory } from "react-router";
-// import Skeleton from "react-loading-skeleton";
+
 import SkeletonCard from "../../skeleton/Skeleton";
 
 import axios from "axios";
@@ -72,31 +72,35 @@ const TopNews: FunctionComponent<NewsProps> = ({ newsUrl, pageLayout }) => {
         <div className={`dev-grid-wrapper__div--column--2`}>
           <div>
             {isLoading && (
-              <SkeletonCard count={pageLayout.firstSplitStart} grid={pageLayout.firstGridStart} />
+              <SkeletonCard
+                count={pageLayout.firstSplitStart}
+                grid={pageLayout.firstGridStart}
+              />
             )}
             <div
               className={`dev-grid-wrapper__article--column--${pageLayout.firstGridStart}`}
             >
               {isError && <div>Something went wrong</div>}
-              {query.response.results
-                .slice(0, pageLayout.firstSplitStart)
-                .map((item, index) => (
-                  !isLoading && <Card
-                    key={index}
-                    loading={isLoading}
-                    image={item.fields.thumbnail}
-                    title={item.fields.headline}
-                    published={moment(`${item.webPublicationDate}`).fromNow(
-                      true
-                    )}
-                    onClick={() =>
-                      history.push({
-                        pathname: `/article/${item.id}`,
-                        state: { detail: item.fields },
-                      })
-                    }
-                  />
-                ))}
+              {query.response.results.slice(0, pageLayout.firstSplitStart).map(
+                (item, index) =>
+                  !isLoading && (
+                    <Card
+                      key={index}
+                      loading={isLoading}
+                      image={item.fields.thumbnail}
+                      title={item.fields.headline}
+                      published={moment(`${item.webPublicationDate}`).fromNow(
+                        true
+                      )}
+                      onClick={() =>
+                        history.push({
+                          pathname: `/article/${item.id}`,
+                          state: { detail: item.fields },
+                        })
+                      }
+                    />
+                  )
+              )}
             </div>
           </div>
 

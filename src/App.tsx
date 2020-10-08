@@ -21,16 +21,12 @@ const SearchArticle = React.lazy(() => import("./views/SearchArticle"));
 const App = () => {
   const categories = CategoryConfig();
 
-  //"opinion", "sport", "culture", "lifestyle"
-
   return (
     <div className="App">
       <Header />
-      
-     
+
       <React.Suspense fallback={<Skeleton duration={10} height={580} />}>
         <Router>
-        
           <div>
             <MainNavbar />
             <Switch>
@@ -49,7 +45,11 @@ const App = () => {
               })}
               <Route exac path="/article/:id" component={() => <Article />} />
 
-              <Route exac path="/search-article/:id" component={() => <SearchArticle />} />
+              <Route
+                exac
+                path="/search-article/:id"
+                component={() => <SearchArticle />}
+              />
 
               <Route
                 exact

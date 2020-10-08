@@ -10,32 +10,30 @@ const Search = () => {
 
     if (event.key !== "Enter") {
       return false;
-    } 
-    return handleOnClick()
+    }
+    return handleOnClick();
   };
 
   const handleOnClick = () => {
-
     if (!searchTerm) {
-      return false
-  }
+      return false;
+    }
     history.push({
       pathname: "/search-results",
       state: { term: searchTerm },
     });
-    setSearchTerm("")
+    setSearchTerm("");
   };
 
   return (
     <div className="dev-u-margin-default--4px">
       <input
-      className="search"
+        className="search"
         type="search"
         placeholder="Search"
         onKeyUp={handleSearchChange}
-     
       />
-  
+
       <button onClick={handleOnClick} className="dev-btn">
         Search
       </button>

@@ -1,6 +1,6 @@
 nav {
   // padding: 14px 0px;
-  background: rgb(12, 12, 15);;
+  background: rgb(12, 12, 15);
   text-align: left;
   ul {
     display: flex;
@@ -8,7 +8,7 @@ nav {
 
   li {
     align-items: center;
-    background: rgb(12, 12, 15);;
+    background: rgb(12, 12, 15);
 
     a {
       color: white;
@@ -16,13 +16,13 @@ nav {
       display: block;
       border-bottom: 2px solid rgb(12, 12, 15);
     }
-    a.active{
-      background:white;
-      color:rgb(12, 12, 15);
+    a.active {
+      background: white;
+      color: rgb(12, 12, 15);
       border-bottom: 2px solid deeppink;
     }
     a:hover {
-      color: rgb(12, 12, 15);;
+      color: rgb(12, 12, 15);
       background: white;
       border-bottom: 2px solid deeppink;
       transition: all 0.3s ease-in-out;
@@ -41,7 +41,7 @@ ul[aria-expanded="false"] .item {
   display: none;
 }
 
-@media screen and (max-width: 1127px) {
+@media screen and (max-width: 1295px) {
   nav {
     ul {
       justify-content: center;

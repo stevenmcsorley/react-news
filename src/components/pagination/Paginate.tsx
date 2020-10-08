@@ -1,38 +1,30 @@
 import React from "react";
 
 interface PageProps {
-    paginateForward?: any
-    paginateRewind?: any
-  }
-
-
-let pager = 1
-const Paginate = (props: PageProps)  => {
-
-const pagechangeForward = () =>{
-    pager++
-    
-return props.paginateForward(pager)
+  paginateForward?: any;
+  paginateRewind?: any;
 }
 
-const pagechangeRewind = () =>{
-    pager--
-    
-return props.paginateForward(pager)
-}
+let pager = 1;
+const Paginate = (props: PageProps) => {
+  const pagechangeForward = () => {
+    pager++;
 
+    return props.paginateForward(pager);
+  };
 
+  const pagechangeRewind = () => {
+    pager--;
 
+    return props.paginateForward(pager);
+  };
 
-return(
+  return (
     <div>
-  <button onClick={pagechangeRewind}>Previous</button> -- 
-  <button onClick={pagechangeForward}>Next</button> 
-      
+      <button onClick={pagechangeRewind}>Previous</button> --
+      <button onClick={pagechangeForward}>Next</button>
     </div>
+  );
+};
 
-)
-
-}
-
-export default Paginate
+export default Paginate;

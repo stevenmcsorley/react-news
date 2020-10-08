@@ -1,42 +1,37 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 
 import NewsSearch from "../components/news/NewsSearchFactory";
-import Paginate from "../components/pagination/Paginate"
+import Paginate from "../components/pagination/Paginate";
 
-interface SearchQuery{
-  searchQuery: string
+interface SearchQuery {
+  searchQuery: string;
 }
 
 const SearchResults = () => {
   const topNews = "top-headlines";
 
-  interface Paginate{
-    page:number
+  interface Paginate {
+    page: number;
   }
 
   const [page, setPage] = useState(1);
 
   interface LocationState {
-   
-      term: string;
-    
-  }
-  
- 
-    const location = useLocation<LocationState>();
-  
-    const { term } = location.state;
-  
-  const pagechangeForward =(e:number) =>{
-    setPage(e)
+    term: string;
   }
 
-  const pagechangeRewind =(e:number) =>{
-    setPage(e)
-  }
+  const location = useLocation<LocationState>();
 
+  const { term } = location.state;
 
+  const pagechangeForward = (e: number) => {
+    setPage(e);
+  };
+
+  const pagechangeRewind = (e: number) => {
+    setPage(e);
+  };
 
   interface Query {
     api: string;
@@ -67,24 +62,22 @@ const SearchResults = () => {
   const pagination = {
     page: page,
     offset: 50,
-    total: 0
-  }
-
-
+    total: 0,
+  };
 
   const queryNews = (s: Query) => {
     return `https://content.guardianapis.com/search?q=${s.category}&page=${pagination.page}&page-size=50&order-by=relevance&show-blocks=all&api-key=0d3ae253-e9ba-4bad-814e-69a9a5fda18e`;
   };
 
-  const pageConfig ={
+  const pageConfig = {
     firstSplitStart: 3,
     firstSplitEnd: 13,
     firstGridStart: 1,
     firstGridEnd: 2,
     secondSplitStart: 6,
     secondSplitEnd: 20,
-    secondGridStart:6
-  }
+    secondGridStart: 6,
+  };
   // Move this out in to configs
 
   return (
@@ -92,8 +85,15 @@ const SearchResults = () => {
       <div>
         <h4>{queryOne.q}</h4>
       </div>
-      <Paginate paginateForward={pagechangeForward} paginateRewind={pagechangeRewind}/>
-      <NewsSearch newsUrl={queryNews(queryOne)} pageLayout={pageConfig} bottomSplit={5} />
+      <Paginate
+        paginateForward={pagechangeForward}
+        paginateRewind={pagechangeRewind}
+      />
+      <NewsSearch
+        newsUrl={queryNews(queryOne)}
+        pageLayout={pageConfig}
+        bottomSplit={5}
+      />
     </div>
   );
 };
