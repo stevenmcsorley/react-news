@@ -6,7 +6,8 @@ const Home: FunctionComponent = () => {
   interface Query {
     api: string;
     endpoint: string;
-    q?: string;
+    q: string;
+    section: string;
     pageSize?: number;
     orderBy?: string;
     showFields: string;
@@ -17,6 +18,7 @@ const Home: FunctionComponent = () => {
     api: `${process.env.REACT_APP_API_URL}`,
     endpoint: "search",
     q: "World news",
+    section: "world",
     pageSize: 49,
     orderBy: "newest",
     showFields: "all",
@@ -27,6 +29,18 @@ const Home: FunctionComponent = () => {
     api: `${process.env.REACT_APP_API_URL}`,
     endpoint: "search",
     q: "Sport",
+    section: "sport",
+    pageSize: 49,
+    orderBy: "newest",
+    showFields: "all",
+    key: `${process.env.REACT_APP_API_KEY}`,
+  };
+
+  const queryThree = {
+    api: `${process.env.REACT_APP_API_URL}`,
+    endpoint: "search",
+    q: "Society",
+    section: "society",
     pageSize: 49,
     orderBy: "newest",
     showFields: "all",
@@ -34,7 +48,7 @@ const Home: FunctionComponent = () => {
   };
 
   const queryNews = (s: Query) => {
-    return `${s.api}/${s.endpoint}?order-by=${s.orderBy}&show-fields=${s.showFields}&q=${s.q}&page-size=${s.pageSize}&api-key=${s.key}`;
+    return `${s.api}/${s.endpoint}?order-by=${s.orderBy}&show-fields=${s.showFields}&section=${s.section}&q=${s.q}&page-size=${s.pageSize}&&api-key=${s.key}`;
   };
 
   const pageConfig = {
@@ -49,14 +63,22 @@ const Home: FunctionComponent = () => {
 
   return (
     <div className="dev-grid-wrapper__div--column--0">
+      <h4 className="dev-u-padding-default section-title">{queryOne.q}</h4>
       <TopNews
         newsUrl={queryNews(queryOne)}
         pageLayout={pageConfig}
         bottomSplit={5}
       />
-
+      <h4 className="dev-u-padding-default section-title">{queryTwo.q}</h4>
       <TopNews
         newsUrl={queryNews(queryTwo)}
+        pageLayout={pageConfig}
+        bottomSplit={5}
+      />
+
+      <h4 className="dev-u-padding-default section-title">{queryThree.q}</h4>
+      <TopNews
+        newsUrl={queryNews(queryThree)}
         pageLayout={pageConfig}
         bottomSplit={5}
       />

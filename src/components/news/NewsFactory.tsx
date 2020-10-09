@@ -7,6 +7,7 @@ import SkeletonCard from "../../skeleton/Skeleton";
 import axios from "axios";
 import moment from "moment";
 import Card from "../cards/Card";
+import CardSmall from "../cards/CardSmall";
 
 import { News } from "../../interfaces/INews";
 
@@ -95,7 +96,7 @@ const TopNews: FunctionComponent<NewsProps> = ({ newsUrl, pageLayout }) => {
                       onClick={() =>
                         history.push({
                           pathname: `/article/${item.id}`,
-                          state: { detail: item.fields },
+                          state: { detail: item },
                         })
                       }
                     />
@@ -127,7 +128,7 @@ const TopNews: FunctionComponent<NewsProps> = ({ newsUrl, pageLayout }) => {
                     onClick={() =>
                       history.push({
                         pathname: `/article/${item.id}`,
-                        state: { detail: item.fields },
+                        state: { detail: item },
                       })
                     }
                   />
@@ -144,19 +145,20 @@ const TopNews: FunctionComponent<NewsProps> = ({ newsUrl, pageLayout }) => {
           {query.response.results
             .slice(pageLayout.secondSplitStart, pageLayout.secondSplitEnd)
             .map((item, index) => (
-              <Card
+              <CardSmall
                 loading={isLoading}
                 key={index}
                 image={item.fields.thumbnail}
                 title={item.fields.headline}
-                published={moment(`${item.webPublicationDate}`).fromNow(true)}
+                trailText={item.fields.trailText.split(" ").splice(0, 14).join(" ") + "..."}
                 onClick={() =>
                   history.push({
                     pathname: `/article/${item.id}`,
-                    state: { detail: item.fields },
+                    state: { detail: item },
                   })
                 }
               />
+
             ))}
         </div>
       </div>

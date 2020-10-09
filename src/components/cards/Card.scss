@@ -30,3 +30,41 @@ span.title{
     }
 }
 }
+
+.card-small{
+    border: 1px solid silver;
+    padding:12px;
+  
+    .title{
+      text-align: left;
+      font-weight:bold;
+      font-size: 15px;
+      cursor: pointer;
+
+      &:hover{
+          text-decoration: underline;
+      }
+    }
+  
+    .image-wrapper{
+      margin-right: 8px;
+    }
+  
+    .image{
+      height:100%;
+      width:100%;
+      overflow: hidden;
+      img{
+        object-fit: cover;
+        width: 100%;
+      }
+    }
+    .trailText{
+      text-align: left;
+      width: 100%;
+      font-size:12px;
+      line-height: 12px;
+      margin:4px 0px 0px 0px;
+      padding:0;
+    }
+  }
