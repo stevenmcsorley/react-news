@@ -4,7 +4,6 @@ import { useHistory } from "react-router";
 
 import SkeletonCard from "../../skeleton/Skeleton";
 
-import axios from "axios";
 import moment from "moment";
 import Card from "../cards/Card";
 import CardSmall from "../cards/CardSmall";
@@ -12,7 +11,7 @@ import CardSmall from "../cards/CardSmall";
 import { News } from "../../interfaces/INews";
 
 interface NewsProps {
-  newsUrl: string;
+  data?: any
   pageLayout: pageLayout;
   bottomSplit: number;
 }
@@ -27,7 +26,7 @@ interface pageLayout {
   secondGridStart: number;
 }
 
-const TopNews: FunctionComponent<NewsProps> = ({ newsUrl, pageLayout }) => {
+const TopNews: FunctionComponent<NewsProps> = ({ data, pageLayout }) => {
   const history = useHistory();
 
   const [query, setQuery] = useState<{ response: News }>({
@@ -48,12 +47,11 @@ const TopNews: FunctionComponent<NewsProps> = ({ newsUrl, pageLayout }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    async function fetchData() {
+    async function fetchData() {      
       setIsError(false);
       setIsLoading(true);
       try {
-        const result = await axios.get(newsUrl);
-
+        const result = await data;
         setQuery(result.data);
         setIsLoading(false);
       } catch (error) {
@@ -63,7 +61,7 @@ const TopNews: FunctionComponent<NewsProps> = ({ newsUrl, pageLayout }) => {
       }
     }
     fetchData();
-  }, [newsUrl]);
+  }, [data]);
 
   if (errorMsg === "Request failed with status code 429") {
     return <h4>Alernative Content</h4>;
