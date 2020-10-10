@@ -93,7 +93,7 @@ const TopNews: FunctionComponent<NewsProps> = ({ data, pageLayout }) => {
                       )}
                       onClick={() =>
                         history.push({
-                          pathname: `/article/${item.id}`,
+                          pathname: `/${item.id}`,
                           state: { detail: item },
                         })
                       }
@@ -125,7 +125,7 @@ const TopNews: FunctionComponent<NewsProps> = ({ data, pageLayout }) => {
                     )}
                     onClick={() =>
                       history.push({
-                        pathname: `/article/${item.id}`,
+                        pathname: `/${item.id}`,
                         state: { detail: item },
                       })
                     }
@@ -151,7 +151,7 @@ const TopNews: FunctionComponent<NewsProps> = ({ data, pageLayout }) => {
                 trailText={item.fields.trailText.split(" ").splice(0, 14).join(" ") + "..."}
                 onClick={() =>
                   history.push({
-                    pathname: `/article/${item.id}`,
+                    pathname: `/${item.id}`,
                     state: { detail: item },
                   })
                 }
