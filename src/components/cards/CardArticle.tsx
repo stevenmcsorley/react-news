@@ -168,7 +168,7 @@ const CardArticle: FunctionComponent<CardProps> = ({ data }) => {
                       className="dev-card-base__image"
                       onClick={() =>
                         history.push({
-                          pathname: `/${item.id}`,
+                          pathname: `/article/${item.id}`,
                           state: { detail: item },
                         })
                       }
