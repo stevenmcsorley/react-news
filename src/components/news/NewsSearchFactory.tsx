@@ -113,7 +113,7 @@ const NewsSearch = (NewsProps: NewsProps) => {
                       )}
                       onClick={() =>
                         history.push({
-                          pathname: `/search-article/${item.id}`,
+                          pathname: `/article/${item.id}`,
                           state: { detail: item },
                         })
                       }

@@ -94,8 +94,7 @@ interface RelatedContent {
 }
 
 const CardArticle: FunctionComponent<CardProps> = ({ data }) => {
-  const [isError, setIsError] = useState(false);
-  const [errorMsg, setErrorMsg] = useState(null);
+
   const [isLoading, setIsLoading] = useState(false);
 
   const history = useHistory();
@@ -118,7 +117,6 @@ const CardArticle: FunctionComponent<CardProps> = ({ data }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      setIsError(false);
       setIsLoading(true);
       try {
         const result = await data;
@@ -126,8 +124,6 @@ const CardArticle: FunctionComponent<CardProps> = ({ data }) => {
         setQuery(result.data);
         setIsLoading(false);
       } catch (error) {
-        setErrorMsg(error.message);
-        setIsError(true);
         setIsLoading(false);
       }
     };
