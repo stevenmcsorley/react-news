@@ -31,7 +31,7 @@ const Article = () => {
 
   // console.log("location.state.detail", location.state.detail.id);
   const queryOne = {
-    endpoint: location.pathname,
+    endpoint: location.pathname.substring(8),
   };
 
   return (<CardArticle data={NewsApi.getNewsSingle(queryOne)} />);

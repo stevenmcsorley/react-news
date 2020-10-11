@@ -43,7 +43,7 @@ const App = () => {
                   />
                 );
               })}
-              <Route exac path="/:id" component={() => <Article />} />
+              <Route exac path="/article/:id" component={() => <Article />} />
 
               <Route
                 exac

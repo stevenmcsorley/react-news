@@ -12,6 +12,8 @@ const SearchResults = () => {
   const { term } = location.state;
   const [page, setPage] = useState<number>(1);
 
+  console.log("term", term)
+
   interface Query {
     api: string;
     endpoint: string;

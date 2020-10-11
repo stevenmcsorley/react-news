@@ -70,6 +70,7 @@ const NewsSearch = (NewsProps: NewsProps) => {
 
     const fetchData = async () => {
       const result = await axios(NewsProps.newsUrl);
+      console.log("result", result)
       setQuery(result.data);
       setIsLoading(false);
     };
