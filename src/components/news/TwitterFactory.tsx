@@ -58,7 +58,7 @@ const Twitter: FunctionComponent<NewsProps> = ({ data }) => {
   } else {
     return (
       <div>
-        <div className={`dev-grid-wrapper__div--column--0`}>
+        <div className={`dev-grid-wrapper__div--column--0 dev-u-padding-default`}>
           <div>
             {isError && <div>Something went wrong</div>}
 

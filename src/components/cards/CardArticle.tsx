@@ -120,7 +120,6 @@ const CardArticle: FunctionComponent<CardProps> = ({ data }) => {
       setIsLoading(true);
       try {
         const result = await data;
-        console.log("result.data)", result.data);
         setQuery(result.data);
         setIsLoading(false);
       } catch (error) {
@@ -128,7 +127,6 @@ const CardArticle: FunctionComponent<CardProps> = ({ data }) => {
       }
     };
     fetchData();
-    console.log("query", query);
   }, [data, query]);
   const placeholderImage =
     "https://c.pxhere.com/photos/aa/fa/newspaper_news_information_read_press_daily_newspaper_paper_magazines-811573.jpg!d";
