@@ -26,9 +26,34 @@ body {
   border: 1px solid red;
 }
 
-
-.section-title{
-  background:#000;
-  color:#fff;
+.section-title {
+  background: #000;
+  color: #fff;
   margin: 8px;
+}
+
+.twitter_trends {
+  > div {
+    display: inline-block;
+    padding: 8px;
+    background: #000;
+    margin: 3px;
+    font-size: 14px;
+    color: #fff;
+    border-radius: 8px;
+
+    a {
+      color: #fff;
+
+      &:hover {
+        color: darken($color: #fff, $amount: 15%);
+      }
+    }
+    p {
+      font-size: 11px;
+      margin: 0;
+      padding: 0;
+      color: #64d4ef;
+    }
+  }
 }

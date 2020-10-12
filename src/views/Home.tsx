@@ -1,9 +1,11 @@
 import React, { FunctionComponent } from "react";
 
 import TopNews from "../components/news/NewsFactory";
+import TwitterFeed from "../components/news/TwitterFactory"
 
 import RepositoryFactory from "../api/respositoryFactory";
 const NewsApi = RepositoryFactory.get("newsApi");
+const twitterApi = RepositoryFactory.get("twitterApi");
 
 const Home: FunctionComponent = () => {
   const queryOne = {
@@ -45,7 +47,12 @@ const Home: FunctionComponent = () => {
 
   return (
     <div className="dev-grid-wrapper__div--column--0">
+ <h4 className="dev-u-padding-default section-title">Latest Trends on Twitter</h4>
+<TwitterFeed
+      data={twitterApi.getTrends()}
+      />
       <h4 className="dev-u-padding-default section-title">{queryOne.q}</h4>
+
       <TopNews
         data={NewsApi.getNews(queryOne)}
         pageLayout={pageConfig}

@@ -1,0 +1,11 @@
+deployment:
+    tasks:
+      - export DEPLOYPATH=/home/melodicm/react-news.melodicmonkey.a2hosted.com
+      # - /bin/rm -Rf $DEPLOYPATH/css
+      # - /bin/rm -Rf $DEPLOYPATH/js
+      # - /bin/rm -Rf $DEPLOYPATH/img
+      # - /bin/rm $DEPLOYPATH/index.html
+      # - /bin/mkdir $DEPLOYPATH/css
+      # - /bin/mkdir $DEPLOYPATH/js
+      # - /bin/mkdir $DEPLOYPATH/img
+      - /bin/rsync -a dist/ $DEPLOYPATH
