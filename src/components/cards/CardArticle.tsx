@@ -136,7 +136,7 @@ const CardArticle: FunctionComponent<CardProps> = ({ data }) => {
         <div className="position-relative ">
           <div className="dev-card-base dev-flex-column dev-u-padding-default">
             <div className="dev-card-base__header dev-u-padding-default">
-              {query.response.content.webTitle}
+              <h4 className="dev-u-padding-horizontal card-title">{query.response.content.webTitle}</h4>
             </div>
             <div className="dev-card-base__body dev-card-base__body--grow dev-u-padding-default dev-u-align-left ">
               <p
@@ -154,7 +154,8 @@ const CardArticle: FunctionComponent<CardProps> = ({ data }) => {
             <div key={index}>
               <div className="dev-card-base dev-flex-column dev-u-padding-default dev-u-margin-bottom">
                 <div className="dev-card-base__header dev-u-padding-default">
-                  {item.webTitle}
+                  <h4 className="dev-u-padding-horizontal card-title">{item.webTitle}</h4>
+                  
                 </div>
                 <div className="dev-card-base__body dev-card-base__body--grow dev-u-padding-default">
                   <div

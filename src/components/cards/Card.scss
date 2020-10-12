@@ -1,3 +1,5 @@
+// Needs refactoring the sass dumping ground
+
 .position-relative{
     // position: relative;
 }
@@ -67,4 +69,10 @@ span.title{
       margin:4px 0px 0px 0px;
       padding:0;
     }
+  }
+
+  .card-title{
+    text-align: left;
+    font-weight:bold;
+    font-size: 15px;
   }
