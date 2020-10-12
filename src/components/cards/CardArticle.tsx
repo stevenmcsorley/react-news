@@ -149,6 +149,7 @@ const CardArticle: FunctionComponent<CardProps> = ({ data }) => {
         </div>
 
         <div className="position-relative">
+          <div>
           
           {query.response.relatedContent.map((item, index) => (
             <div key={index}>
@@ -182,6 +183,7 @@ const CardArticle: FunctionComponent<CardProps> = ({ data }) => {
               </div>
             </div>
           ))}
+        </div>
         </div>
       </div>
     </div>

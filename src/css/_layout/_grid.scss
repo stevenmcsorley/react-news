@@ -47,6 +47,12 @@
       &--8 {
         @include flexbox(8, 'article', true, 8, flex, column);
       }
+      &--9 {
+        @include flexbox(9, 'article', true, 8, flex, column);
+      }
+      &--10 {
+        @include flexbox(10, 'article', true, 8, flex, column);
+      }
       &--14 {
         @include flexbox(14, 'article', true, 8, flex, column);
       }
@@ -78,6 +84,12 @@
       }
       &--8 {
         @include flexbox(8, 'article', true, 8, flex, row);
+      }
+      &--9 {
+        @include flexbox(9, 'article', true, 8, flex, row);
+      }
+      &--10 {
+        @include flexbox(10, 'article', true, 8, flex, row);
       }
 
     }
@@ -120,6 +132,12 @@
       &--8 {
         @include flexbox(8, 'div', true, 8, flex, column);
       }
+      &--9 {
+        @include flexbox(9, 'div', true, 8, flex, column);
+      }
+      &--10 {
+        @include flexbox(10, 'div', true, 8, flex, column);
+      }
 
     }
 
@@ -148,6 +166,12 @@
       }
       &--8 {
         @include flexbox(8, 'div', true, 8, flex, row);
+      }
+      &--9 {
+        @include flexbox(9, 'div', true, 8, flex, row);
+      }
+      &--10 {
+        @include flexbox(10, 'div', true, 8, flex, row);
       }
 
     }
