@@ -24,10 +24,7 @@ interface NewsProps {
   data?: any;
 }
 
-
 const Twitter: FunctionComponent<NewsProps> = ({ data }) => {
-
-
   const [query, setQuery] = useState<{ trends: Trends[] }>({
     trends: [],
   });
@@ -62,22 +59,32 @@ const Twitter: FunctionComponent<NewsProps> = ({ data }) => {
           <div>
             {isError && <div>Something went wrong</div>}
 
-            <div className={`twitter_trends dev-grid-wrapper__div--column--${Math.abs(query.trends.length / 2)}`}>
-              {query.trends.sort((a, b) => b.tweet_volume - a.tweet_volume).map(
-                (item, index) =>
-                  !isLoading && (
-                    <div key={index}>
-                      <a
-                        href={item.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        {item.name}
-                      </a>
-                  <p>{item.tweet_volume != null ? `${item.tweet_volume} tweets`: ''}</p>
-                    </div>
-                  )
-              )}
+            <div
+              className={`twitter_trends dev-grid-wrapper__div--column--${Math.abs(
+                query.trends.length / 2
+              )}`}
+            >
+              {query.trends
+                .sort((a, b) => b.tweet_volume - a.tweet_volume)
+                .map(
+                  (item, index) =>
+                    !isLoading && (
+                      <div key={index}>
+                        <a
+                          href={item.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {item.name}
+                        </a>
+                        <p>
+                          {item.tweet_volume != null
+                            ? `${item.tweet_volume} tweets`
+                            : ""}
+                        </p>
+                      </div>
+                    )
+                )}
             </div>
           </div>
 
