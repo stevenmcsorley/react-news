@@ -59,7 +59,7 @@ const Twitter: FunctionComponent<NewsProps> = ({ data }) => {
           <div>
             {isError && <div>Something went wrong</div>}
 
-            <div className={`twitter_trends dev-grid-wrapper__div--column--${Math.round(query.trends.length / 2)}`}>
+            <div className={`twitter_trends dev-u-padding-default dev-grid-wrapper__div--column--${Math.round(query.trends.length / 2)}`}>
               {query.trends.sort((a, b) => b.tweet_volume - a.tweet_volume).map(
                 (item, index) =>
                   !isLoading && (
