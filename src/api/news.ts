@@ -13,12 +13,12 @@ interface Query {
 export default {
   getNews(queryParams: Query) {
     return BaseApi.get(
-      `/${queryParams.endpoint}?order-by=${queryParams.orderBy}&show-fields=${queryParams.showFields}&section=${queryParams.section}&q=${queryParams.q}&page-size=${queryParams.pageSize}&api-key=${process.env.REACT_APP_API_KEY}`
+      `${queryParams.endpoint}?order-by=${queryParams.orderBy}&show-fields=${queryParams.showFields}&section=${queryParams.section}&q=${queryParams.q}&page-size=${queryParams.pageSize}&api-key=${process.env.REACT_APP_API_KEY}`
     );
   },
   getNewsCategory(queryParams: Query) {
     return BaseApi.get(
-      `/${queryParams.endpoint}?order-by=${queryParams.orderBy}&show-fields=all&section=${queryParams.q}&page-size=${queryParams.pageSize}&api-key=${process.env.REACT_APP_API_KEY}`
+      `${queryParams.endpoint}?order-by=${queryParams.orderBy}&show-fields=all&section=${queryParams.q}&page-size=${queryParams.pageSize}&api-key=${process.env.REACT_APP_API_KEY}`
     );
   },
   getNewsSingle(queryParams: Query) {
