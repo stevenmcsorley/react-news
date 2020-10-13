@@ -44,7 +44,7 @@ const Card: FunctionComponent<CardProps> = ({
           </div>
         </div>
         <div className="dev-card-base__footer">
-          <h4 className="dev-u-padding-horizontal">{title}</h4>
+          <h4 className="dev-u-padding-horizontal card-title">{title}</h4>
           <span className="card-badge">{published}</span>
         </div>
         {children && (

@@ -17,19 +17,9 @@ interface Location {
 }
 
 const Article = () => {
-  // const [isError, setIsError] = useState(false);
-  // const [errorMsg, setErrorMsg] = useState(null);
-  // const [isLoading, setIsLoading] = useState(false);
-
-  let locat = useLocation();
-
-  console.log(locat.pathname);
 
   const location = useLocation<Location>();
 
-  // const [pageContent, setPageContentl] = useState<NewsResults[]>([]);
-
-  // console.log("location.state.detail", location.state.detail.id);
   const queryOne = {
     endpoint: location.pathname.substring(8),
   };
