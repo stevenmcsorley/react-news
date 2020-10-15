@@ -4,8 +4,8 @@ import TopNews from "../components/news/NewsFactory";
 import TwitterFeed from "../components/news/TwitterFactory"
 
 import RepositoryFactory from "../api/respositoryFactory";
-const NewsApi = RepositoryFactory.get("newsApi");
-const twitterApi = RepositoryFactory.get("twitterApi");
+const NewsApi:any = RepositoryFactory.get("newsApi");
+const twitterApi:any = RepositoryFactory.get("twitterApi");
 
 const Home: FunctionComponent = () => {
   const queryOne = {

@@ -6,7 +6,7 @@ import { NewsResults } from "../interfaces/INews";
 import CardArticle from "../components/cards/CardArticle";
 
 import RepositoryFactory from "../api/respositoryFactory";
-const NewsApi = RepositoryFactory.get("newsApi");
+const NewsApi:any = RepositoryFactory.get("newsApi");
 
 interface RouteParams {
   id: string;

@@ -1,5 +1,9 @@
 import SearchResults from "../views/SearchResults";
 
+
+
+import { AxiosResponse } from "axios";
+
 export interface Response {
   currentPage: number;
   orderBy: string;
@@ -143,4 +147,28 @@ export interface News extends Response {
 
 export interface Search extends Response {
   results: SearchResults[];
+}
+
+export interface Query {
+  endpoint?: string;
+  q?: string;
+  section?: string;
+  pageSize?: number;
+  orderBy?: string;
+  showFields?: string;
+}
+
+
+export interface IVerbs {
+  getNews?(queryParams: Query): Promise<AxiosResponse<any>>;
+  getNewsCategory?(queryParams: Query): Promise<AxiosResponse<any>>;
+  getNewsSingle?(queryParams: Query): Promise<AxiosResponse<any>>;
+  getTrends?():Promise<AxiosResponse<any>>
+
+}
+
+
+export interface IApi {
+  [index: string]: IVerbs;
+
 }

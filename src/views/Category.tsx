@@ -3,7 +3,7 @@ import React from "react";
 import TopNews from "../components/news/NewsFactory";
 
 import RepositoryFactory from "../api/respositoryFactory";
-const NewsApi = RepositoryFactory.get("newsApi");
+const NewsApi:any = RepositoryFactory.get("newsApi");
 
 interface Category {
   category: string;
