@@ -71,7 +71,7 @@ const Twitter: FunctionComponent<NewsProps> = ({ data }) => {
                       >
                         {item.name}
                       </a>
-                  <p>{item.tweet_volume != null ? `${item.tweet_volume} tweets`: ''}</p>
+                  <p>{item.tweet_volume != null ? `${item.tweet_volume > 999 ? (item.tweet_volume /1000).toFixed(1) + 'k': item.tweet_volume } tweets`: ''}</p>
                     </div>
                   )
               )}
