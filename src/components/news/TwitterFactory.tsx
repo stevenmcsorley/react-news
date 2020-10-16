@@ -32,6 +32,20 @@ const Twitter: FunctionComponent<NewsProps> = ({ data }) => {
   const [errorMsg, setErrorMsg] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
+  const twitterVol = (vol: number) => {
+    if (vol !== null) {
+      if (vol > 999 && vol < 999999) {
+        return (vol / 1000).toFixed(1) + "k tweets";
+      } else if (vol > 999999) {
+        return (vol / 1000000).toFixed(1) + "m tweets";
+      } else {
+        return vol;
+      }
+    } else {
+      return "";
+    }
+  };
+
   useEffect(() => {
     async function fetchData() {
       setIsError(false);
@@ -55,26 +69,34 @@ const Twitter: FunctionComponent<NewsProps> = ({ data }) => {
   } else {
     return (
       <div>
-        <div className={`dev-grid-wrapper__div--column--0 dev-u-padding-default`}>
+        <div
+          className={`dev-grid-wrapper__div--column--0 dev-u-padding-default`}
+        >
           <div>
             {isError && <div>Something went wrong</div>}
 
-            <div className={`twitter_trends dev-u-padding-default dev-grid-wrapper__div--column--${Math.round(query.trends.length / 2)}`}>
-              {query.trends.sort((a, b) => b.tweet_volume - a.tweet_volume).map(
-                (item, index) =>
-                  !isLoading && (
-                    <div key={index}>
-                      <a
-                        href={item.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        {item.name}
-                      </a>
-                  <p>{item.tweet_volume != null ? `${item.tweet_volume > 999 ? (item.tweet_volume /1000).toFixed(1) + 'k': item.tweet_volume } tweets`: ''}</p>
-                    </div>
-                  )
-              )}
+            <div
+              className={`twitter_trends dev-u-padding-default dev-grid-wrapper__div--column--${Math.round(
+                query.trends.length / 2
+              )}`}
+            >
+              {query.trends
+                .sort((a, b) => b.tweet_volume - a.tweet_volume)
+                .map(
+                  (item, index) =>
+                    !isLoading && (
+                      <div key={index}>
+                        <a
+                          href={item.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {item.name}
+                        </a>
+                        <p>{twitterVol(item.tweet_volume)}</p>
+                      </div>
+                    )
+                )}
             </div>
           </div>
 
