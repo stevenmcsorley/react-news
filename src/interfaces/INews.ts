@@ -164,6 +164,7 @@ export interface IVerbs {
   getNewsCategory?(queryParams: Query): Promise<AxiosResponse<any>>;
   getNewsSingle?(queryParams: Query): Promise<AxiosResponse<any>>;
   getTrends?():Promise<AxiosResponse<any>>
+  getBreakingNews?():Promise<AxiosResponse<any>>
 
 }
 

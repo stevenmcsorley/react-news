@@ -1,4 +1,5 @@
 import React from "react";
+import NewsFeed from "../news/NewsFeed"
 import "./Header.scss";
 const Header = () => {
   return (
@@ -9,6 +10,9 @@ const Header = () => {
             <h1>React News</h1>
           </a>
         </div>
+      </div>
+      <div className="breakingNewsTicker">
+<NewsFeed />
       </div>
     </div>
   );

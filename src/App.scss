@@ -57,3 +57,28 @@ body {
     }
   }
 }
+
+.breakingNewsTicker{
+  background:rgb(128, 28, 28);
+  color:yellow;
+  width: 100%;
+	line-height: 40px;
+    white-space: nowrap;
+    overflow: hidden;
+    box-sizing: border-box;
+
+  ul{
+    display: inline-block;
+    padding-left: 100%;
+    animation: marquee 100s linear infinite;
+    li{
+      display: inline-block;
+      margin:0px 10px;
+    }
+  }
+}
+
+@keyframes marquee {
+  0%   { transform: translate(0, 0); }
+  100% { transform: translate(-100%, 0); }
+}

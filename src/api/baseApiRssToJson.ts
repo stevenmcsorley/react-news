@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = `${process.env.REACT_APP_API_URL}`;
+const baseURL = `https://api.rss2json.com/v1/`;
 
 export default axios.create({
   baseURL
