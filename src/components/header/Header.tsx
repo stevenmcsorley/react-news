@@ -3,6 +3,7 @@ import NewsFeed from "../news/NewsFeed";
 import QuakeFeed from "../news/QuakeFeed";
 import VolcanoFeed from "../news/VolcanoFeed"
 import WeatherWarningsFeed from "../news/WeatherWarningUKFeed"
+import WhosFeed from "../news/WhoFeed"
 import "./Header.scss";
 const Header = () => {
   return (
@@ -18,6 +19,7 @@ const Header = () => {
         <span className="ticker-header">LIVE: </span>
         <ul>
           <NewsFeed />
+          <WhosFeed />
           <WeatherWarningsFeed />
           <QuakeFeed />
           <VolcanoFeed />

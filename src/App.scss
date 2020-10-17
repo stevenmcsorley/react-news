@@ -59,22 +59,27 @@ body {
 }
 
 .breakingNewsTicker {
-  position: relative;
-  background: rgb(128, 28, 28);
-  color: yellow;
+  osition: relative;
+  background: #00ffd3;
+  color: #0c3b52;
   width: 100%;
-  line-height: 40px;
+  line-height: 30px;
   white-space: nowrap;
   overflow: hidden;
   box-sizing: border-box;
-  box-shadow: inset -10px 0px 32px -10px #330b0b;
+  box-shadow: inset 0px 0px 10px 2px #015D5B, inset 0px 2px 16px white;
+  font-size: 12px;
+  text-shadow: 2px 1px 7px #0ca3ad;
+  border: 6px solid #191b1d;
   .ticker-header {
     z-index: 1;
     position: relative;
     z-index: 1;
-    background: #801c1c;
-    padding: 9px;
-    box-shadow: 7px 0px 32px #330b0b;
+    background: #09111b;
+    padding: 14px;
+    box-shadow: 7px 0px 32px #ffffff;
+    color: #01feff;
+    font-size: 12px;
   }
  > ul {
     display: inline-block;

@@ -15,5 +15,8 @@ export default {
   getWeatherWarnings(): Promise<AxiosResponse<any>> {
     return BaseApiRssToJson.get(`api.json?rss_url=http://www.metoffice.gov.uk/public/data/PWSCache/WarningsRSS/Region/UK`);
   },
+  getWhoDiseaseOutbrakes(): Promise<AxiosResponse<any>> {
+    return BaseApiRssToJson.get(`api.json?rss_url=https://www.who.int/feeds/entity/csr/don/en/rss.xml`);
+  },
 
 };
