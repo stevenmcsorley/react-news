@@ -1,5 +1,5 @@
 import React from "react";
-import NewsFeed from "../news/NewsFeed"
+import NewsFeed from "../news/NewsFeed";
 import "./Header.scss";
 const Header = () => {
   return (
@@ -12,7 +12,8 @@ const Header = () => {
         </div>
       </div>
       <div className="breakingNewsTicker">
-<NewsFeed />
+        <span className="ticker-header">Breaking News: </span>
+        <NewsFeed />
       </div>
     </div>
   );

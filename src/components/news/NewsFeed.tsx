@@ -45,7 +45,6 @@ const NewsFeed = () => {
 
     return (
       <ul>
-        <li>BREAKING NEWS: </li>
         {query.items.map((item, index) => !isLoading && <li>{item.title} - </li>)}
       </ul>
     );
