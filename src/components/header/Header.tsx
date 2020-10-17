@@ -16,7 +16,7 @@ const Header = () => {
         </div>
       </div>
       <div className="breakingNewsTicker">
-        <span className="ticker-header">LIVE: </span>
+        {/* <span className="ticker-header">LIVE: </span> */}
         <ul>
           <NewsFeed />
           <WhosFeed />
