@@ -1,5 +1,8 @@
 import React from "react";
 import NewsFeed from "../news/NewsFeed";
+import QuakeFeed from "../news/QuakeFeed";
+import VolcanoFeed from "../news/VolcanoFeed"
+import WeatherWarningsFeed from "../news/WeatherWarningUKFeed"
 import "./Header.scss";
 const Header = () => {
   return (
@@ -12,8 +15,15 @@ const Header = () => {
         </div>
       </div>
       <div className="breakingNewsTicker">
-        <span className="ticker-header">Breaking News: </span>
-        <NewsFeed />
+        <span className="ticker-header">LIVE: </span>
+        <ul>
+          <NewsFeed />
+          <QuakeFeed />
+          <VolcanoFeed />
+          <WeatherWarningsFeed />
+        </ul>
+        
+        
       </div>
     </div>
   );

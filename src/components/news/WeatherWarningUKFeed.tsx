@@ -19,7 +19,7 @@ interface Items {
   title: string;
 }
 
-const NewsFeed = () => {
+const WeatherWarningUKFeed = () => {
   const [query, setQuery] = useState<{ items: Items[] }>({
     items: [],
   });
@@ -33,7 +33,7 @@ const NewsFeed = () => {
     setIsLoading(true);
 
     const fetchData = async () => {
-      const result = await NewsApi.getBreakingNews();
+      const result = await NewsApi.getRecentVolcanos();
       setQuery(result.data);
       setIsLoading(false);
     };
@@ -45,13 +45,12 @@ const NewsFeed = () => {
     return (
       <li>
         <ul>
-        <li>BREAKING NEWS: </li>
+        <li>WEATHER WARNINGS: </li>     
         {query.items.map((item, index) => !isLoading && <li key={index}>{item.title} - </li>)}
         </ul>
       </li>
-      
     );
 
 };
 
-export default NewsFeed;
+export default WeatherWarningUKFeed;

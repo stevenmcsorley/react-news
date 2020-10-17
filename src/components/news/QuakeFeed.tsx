@@ -19,7 +19,7 @@ interface Items {
   title: string;
 }
 
-const NewsFeed = () => {
+const QuakeFeed = () => {
   const [query, setQuery] = useState<{ items: Items[] }>({
     items: [],
   });
@@ -33,7 +33,7 @@ const NewsFeed = () => {
     setIsLoading(true);
 
     const fetchData = async () => {
-      const result = await NewsApi.getBreakingNews();
+      const result = await NewsApi.getRecentQuakes();
       setQuery(result.data);
       setIsLoading(false);
     };
@@ -45,13 +45,12 @@ const NewsFeed = () => {
     return (
       <li>
         <ul>
-        <li>BREAKING NEWS: </li>
+        <li>EARTHQUAKES IN THE PAST HOUR: </li>
         {query.items.map((item, index) => !isLoading && <li key={index}>{item.title} - </li>)}
         </ul>
       </li>
-      
     );
 
 };
 
-export default NewsFeed;
+export default QuakeFeed;
