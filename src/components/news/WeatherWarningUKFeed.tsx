@@ -33,7 +33,7 @@ const WeatherWarningUKFeed = () => {
     setIsLoading(true);
 
     const fetchData = async () => {
-      const result = await NewsApi.getRecentVolcanos();
+      const result = await NewsApi.getWeatherWarnings();
       setQuery(result.data);
       setIsLoading(false);
     };

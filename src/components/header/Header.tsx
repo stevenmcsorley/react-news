@@ -18,9 +18,10 @@ const Header = () => {
         <span className="ticker-header">LIVE: </span>
         <ul>
           <NewsFeed />
+          <WeatherWarningsFeed />
           <QuakeFeed />
           <VolcanoFeed />
-          <WeatherWarningsFeed />
+          
         </ul>
         
         
