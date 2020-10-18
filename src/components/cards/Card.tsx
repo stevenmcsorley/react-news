@@ -30,7 +30,8 @@ const Card: FunctionComponent<CardProps> = ({
   return (
     <article className="position-relative">
       <div className="dev-card-base dev-flex-column">
-        <div className="dev-card-base__body dev-card-base__body--grow dev-u-padding-default">
+        <div className="dev-card-base__body dev-card-base__body--grow">
+        <span className="card-badge">{published}</span>
           <div className="dev-card-base__image" onClick={onClick}>
             {!loading && <Skeleton height={300} />}
             <img
@@ -45,7 +46,7 @@ const Card: FunctionComponent<CardProps> = ({
         </div>
         <div className="dev-card-base__footer">
           <h4 className="dev-u-padding-horizontal card-title">{title}</h4>
-          <span className="card-badge">{published}</span>
+          
         </div>
         {children && (
           <div className="card__body dev-u-padding-default">{children}</div>

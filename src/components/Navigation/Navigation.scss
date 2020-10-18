@@ -18,14 +18,15 @@ nav {
     }
     a.active {
       background: white;
-      color: rgb(12, 12, 15);
+      color: #0c0c0f;
       border-bottom: 2px solid deeppink;
+
     }
     a:hover {
-      color: rgb(12, 12, 15);
       background: white;
+      color: #0c0c0f;
       border-bottom: 2px solid deeppink;
-      transition: all 0.3s ease-in-out;
+      transition: all 0.2s ease-in-out;
     }
   }
 }

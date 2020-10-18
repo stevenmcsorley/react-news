@@ -5,13 +5,15 @@ import VolcanoFeed from "../news/VolcanoFeed"
 import WeatherWarningsFeed from "../news/WeatherWarningUKFeed"
 import WhosFeed from "../news/WhoFeed"
 import "./Header.scss";
+import logo from "../../logo.png"
 const Header = () => {
   return (
-    <div className="dev-u-padding-horizontal">
+    <div>
       <div className={`dev-grid-wrapper__div--column--0`}>
-        <div>
+        <div className="header dev-u-padding-default">
           <a href="/" className="logo">
-            <h1>React News</h1>
+            {/* <h1>React News</h1> */}
+            <img src={logo} alt="React News Trends" />
           </a>
         </div>
       </div>

@@ -1,7 +1,15 @@
+.header{
+    background: #000;
+}
 
 a.logo{
+    display: flex;
+    justify-content: center;
     :hover{
         color:white;
+    }
+    img{
+        height:80px;
     }
 }
 h1{
@@ -11,4 +19,15 @@ h1{
     display: block;
     color:white;
     font-weight:bold;
+}
+
+
+@media screen and (max-width: 1295px) {
+
+    a.logo{
+        img{
+            height:50px;
+        }
+    }
+
 }
