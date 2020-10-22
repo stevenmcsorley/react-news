@@ -53,7 +53,6 @@ const Twitter: FunctionComponent<NewsProps> = ({ data }) => {
       try {
         const result = await data;
         setQuery(result.data);
-        console.log("result", result)
         setIsLoading(false);
       } catch (error) {
         setErrorMsg(error.message);
@@ -79,7 +78,7 @@ const Twitter: FunctionComponent<NewsProps> = ({ data }) => {
             <div
             id="twitter_trends"
               className={`twitter_trends dev-u-padding-default dev-grid-wrapper__div--column--${Math.round(
-                query.trends.length / 2
+                query.trends.length > 25 ? query.trends.length / 5 : query.trends.length / 2
               )}`}
               
             >
