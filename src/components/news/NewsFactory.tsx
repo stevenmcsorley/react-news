@@ -10,6 +10,8 @@ import CardSmall from "../cards/CardSmall";
 
 import { News } from "../../interfaces/INews";
 
+import {TruncateWords} from '../../common/shared';
+
 interface NewsProps {
   data?: any
   pageLayout: pageLayout;
@@ -148,7 +150,7 @@ const TopNews: FunctionComponent<NewsProps> = ({ data, pageLayout }) => {
                 key={index}
                 image={item.fields.thumbnail}
                 title={item.fields.headline}
-                trailText={item.fields.trailText.split(" ").splice(0, 14).join(" ") + "..."}
+                trailText={TruncateWords(item.fields.trailText, 14, "...")}
                 onClick={() =>
                   history.push({
                     pathname: `/article/${item.id}`,

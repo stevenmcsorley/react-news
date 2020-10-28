@@ -1,4 +1,5 @@
 import React, { useEffect, useState, FunctionComponent } from "react";
+import {TwitterVol} from '../../common/shared'
 
 interface TwitterFeed {
   as_of: string;
@@ -32,19 +33,6 @@ const Twitter: FunctionComponent<NewsProps> = ({ data }) => {
   const [errorMsg, setErrorMsg] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  const twitterVol = (vol: number) => {
-    if (vol !== null) {
-      if (vol > 999 && vol < 999999) {
-        return (vol / 1000).toFixed(1) + "k tweets";
-      } else if (vol > 999999) {
-        return (vol / 1000000).toFixed(1) + "m tweets";
-      } else {
-        return vol;
-      }
-    } else {
-      return "";
-    }
-  };
 
   useEffect(() => {
     async function fetchData() {
@@ -95,7 +83,7 @@ const Twitter: FunctionComponent<NewsProps> = ({ data }) => {
                         >
                           {item.name}
                         </a>
-                        <p>{twitterVol(item.tweet_volume)}</p>
+                        <p>{TwitterVol(item.tweet_volume)}</p>
                       </div>
                     )
                 )}
