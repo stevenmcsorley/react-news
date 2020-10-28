@@ -5,6 +5,9 @@ import Skeleton from "react-loading-skeleton";
 import SkeletonCard from "../../skeleton/Skeleton";
 import "./Card.scss";
 
+//  TODO: Needs refactor to uncouple API call inside here
+// and extract interfaces
+
 interface CardProps {
   data: any;
   loading?: boolean;
