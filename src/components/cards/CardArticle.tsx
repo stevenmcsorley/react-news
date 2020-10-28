@@ -95,6 +95,7 @@ interface RelatedContent {
 
 const CardArticle: FunctionComponent<CardProps> = ({ data }) => {
   const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
 
   const history = useHistory();
 
@@ -116,6 +117,7 @@ const CardArticle: FunctionComponent<CardProps> = ({ data }) => {
 
   useEffect(() => {
     const fetchData = async () => {
+      setIsError(false);
       setIsLoading(true);
       try {
         const result = await data;
@@ -123,71 +125,86 @@ const CardArticle: FunctionComponent<CardProps> = ({ data }) => {
         setIsLoading(false);
       } catch (error) {
         setIsLoading(false);
+        setIsError(true);
       }
     };
     fetchData();
   }, [data, query]);
   const placeholderImage =
     "https://c.pxhere.com/photos/aa/fa/newspaper_news_information_read_press_daily_newspaper_paper_magazines-811573.jpg!d";
-  return (
-    <div>
-      {isLoading && <SkeletonCard count={10} grid={2} />}
-      <div className={`dev-grid-wrapper__div--column--2 dev-u-padding-default`}>
-        <div className="position-relative ">
-          <div className="dev-card-base dev-flex-column dev-u-padding-default">
-            <div className="dev-card-base__header dev-u-padding-default">
-              <h4 className="dev-u-padding-horizontal card-title">{query.response.content.webTitle}</h4>
+  if (isError) {
+    return <div>Something went wrong</div>;
+  } else {
+    return (
+      <div>
+        {isLoading && <SkeletonCard count={10} grid={2} />}
+        <div
+          className={`dev-grid-wrapper__div--column--2 dev-u-padding-default`}
+        >
+          <div className="position-relative ">
+            <div className="dev-card-base dev-flex-column dev-u-padding-default">
+              <div className="dev-card-base__header dev-u-padding-default">
+                <h4
+                  className="dev-u-padding-horizontal card-title"
+                  title={query.response.content.webTitle}
+                >
+                  {query.response.content.webTitle}
+                </h4>
+              </div>
+              <div className="dev-card-base__body dev-card-base__body--grow dev-u-padding-default dev-u-align-left ">
+                <p
+                  dangerouslySetInnerHTML={{
+                    __html: query.response.content.fields.body,
+                  }}
+                />
+              </div>
             </div>
-            <div className="dev-card-base__body dev-card-base__body--grow dev-u-padding-default dev-u-align-left ">
-              <p
-                dangerouslySetInnerHTML={{
-                  __html: query.response.content.fields.body,
-                }}
-              />
+          </div>
+
+          <div className="position-relative">
+            <div>
+              {query.response.relatedContent.map((item, index) => (
+                <div key={index}>
+                  <div className="dev-card-base dev-flex-column dev-u-padding-default dev-u-margin-bottom">
+                    <div className="dev-card-base__header dev-u-padding-default">
+                      <h4
+                        className="dev-u-padding-horizontal card-title"
+                        title={item.webTitle}
+                      >
+                        {item.webTitle}
+                      </h4>
+                    </div>
+                    <div className="dev-card-base__body dev-card-base__body--grow dev-u-padding-default">
+                      <div
+                        className="dev-card-base__image"
+                        onClick={() =>
+                          history.push({
+                            pathname: `/article/${item.id}`,
+                            state: { detail: item },
+                          })
+                        }
+                      >
+                        {!isLoading && <Skeleton height={300} />}
+
+                        <img
+                          src={
+                            item.fields.thumbnail
+                              ? item.fields.thumbnail
+                              : placeholderImage
+                          }
+                          alt=""
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
-
-        <div className="position-relative">
-          <div>
-          
-          {query.response.relatedContent.map((item, index) => (
-            <div key={index}>
-              <div className="dev-card-base dev-flex-column dev-u-padding-default dev-u-margin-bottom">
-                <div className="dev-card-base__header dev-u-padding-default">
-                  <h4 className="dev-u-padding-horizontal card-title">{item.webTitle}</h4>
-                  
-                </div>
-                <div className="dev-card-base__body dev-card-base__body--grow dev-u-padding-default">
-                  <div
-                    className="dev-card-base__image"
-                    onClick={() =>
-                      history.push({
-                        pathname: `/article/${item.id}`,
-                        state: { detail: item },
-                      })
-                    }
-                  >
-                    {!isLoading && <Skeleton height={300} />}
-
-                    <img
-                      src={
-                        item.fields.thumbnail
-                          ? item.fields.thumbnail
-                          : placeholderImage
-                      }
-                      alt=""
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-        </div>
       </div>
-    </div>
-  );
+    );
+  }
 };
 
 export default CardArticle;

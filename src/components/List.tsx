@@ -9,7 +9,7 @@ const List = (props: { space: any; }) => {
       {space.map((nasa: { href: string | number | null | undefined; links: { href: string; }[]; }) => {
         return (
           <div key={nasa.href} className='grid-item'>
-            <img src={nasa.links[0].href} className='nasa-img' alt=''/>
+            <img src={nasa.links[0].href} loading="lazy" className='nasa-img' alt=''/>
           </div>
         );
       })}
