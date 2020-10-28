@@ -79,7 +79,7 @@ const Twitter: FunctionComponent<NewsProps> = ({ data }) => {
             <div
             id="twitter_trends"
               className={`twitter_trends dev-u-padding-default dev-grid-wrapper__div--column--${Math.round(
-                query.trends.length / 2
+                query.trends.length > 20 ?  query.trends.length / 5 : query.trends.length / 2
               )}`}
               
             >
