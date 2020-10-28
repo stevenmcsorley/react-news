@@ -5,6 +5,8 @@ import Skeleton from "react-loading-skeleton";
 import SkeletonCard from "../../skeleton/Skeleton";
 import "./Card.scss";
 
+import {SingleResponse} from '../../interfaces/ISingleArticle'
+
 //  TODO: Needs refactor to uncouple API call inside here
 // and extract interfaces
 
@@ -15,95 +17,15 @@ interface CardProps {
   published?: string | Date | number;
 }
 
-interface Image {
-  href: Links[];
-}
 
-interface Links {
-  links: string;
-}
-
-interface Single {
-  response: Response;
-}
-
-interface Response {
-  content: Content;
-  relatedContent: RelatedContent[];
-  status: string;
-  total: number;
-  userTier: string;
-}
-
-interface Content {
-  apiUrl?: string;
-  fields: SingleFields;
-  id?: string;
-  isHosted?: boolean;
-  pillarId?: string;
-  pillarName?: string;
-  sectionId?: string;
-  sectionName?: string;
-  type?: string;
-  webPublicationDate?: string;
-  webTitle?: string;
-  webUrl?: string;
-}
-
-interface SingleFields {
-  body: string;
-  bodyText?: string;
-  byline?: string;
-  bylineHtml?: string;
-  charCount?: string;
-  firstPublicationDate?: string;
-  headline?: string;
-  isInappropriateForSponsorship?: string;
-  isLive?: string;
-  isPremoderated?: string;
-  lang?: string;
-  lastModified?: string;
-  legallySensitive?: string;
-  liveBloggingNow?: string;
-  main?: string;
-  productionOffice?: string;
-  publication?: string;
-  shortUrl?: string;
-  shouldHideAdverts?: string;
-  shouldHideReaderRevenue?: string;
-  showAffiliateLinks?: string;
-  showInRelatedContent?: string;
-  standfirst?: string;
-  thumbnail?: string;
-  trailText?: string;
-  wordcount?: string;
-}
-
-interface RelatedContent {
-  apiUrl: string;
-  fields: SingleFields;
-  id: string;
-  isHosted: boolean;
-  pillarId: string;
-  pillarName: string;
-  references: [];
-  sectionId: string;
-  sectionName: string;
-  tags: [];
-  type: string;
-  webPublicationDate: string;
-  webTitle: string;
-  webUrl: string;
-}
 
 const CardArticle: FunctionComponent<CardProps> = ({ data }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const history = useHistory();
 
-  //   const handleOnClick = () => history.push('/sample');
 
-  const [query, setQuery] = useState<{ response: Response }>({
+  const [query, setQuery] = useState<{ response: SingleResponse }>({
     response: {
       content: {
         fields: {
