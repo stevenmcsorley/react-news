@@ -1,5 +1,4 @@
 import React, { useEffect, useState, FunctionComponent } from "react";
-import {TwitterVol} from '../../common/shared'
 
 interface TwitterFeed {
   as_of: string;
@@ -33,6 +32,19 @@ const Twitter: FunctionComponent<NewsProps> = ({ data }) => {
   const [errorMsg, setErrorMsg] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
+  const twitterVol = (vol: number) => {
+    if (vol !== null) {
+      if (vol > 999 && vol < 999999) {
+        return (vol / 1000).toFixed(1) + "k tweets";
+      } else if (vol > 999999) {
+        return (vol / 1000000).toFixed(1) + "m tweets";
+      } else {
+        return vol;
+      }
+    } else {
+      return "";
+    }
+  };
 
   useEffect(() => {
     async function fetchData() {
@@ -41,6 +53,7 @@ const Twitter: FunctionComponent<NewsProps> = ({ data }) => {
       try {
         const result = await data;
         setQuery(result.data);
+        console.log("result", result)
         setIsLoading(false);
       } catch (error) {
         setErrorMsg(error.message);
@@ -66,7 +79,7 @@ const Twitter: FunctionComponent<NewsProps> = ({ data }) => {
             <div
             id="twitter_trends"
               className={`twitter_trends dev-u-padding-default dev-grid-wrapper__div--column--${Math.round(
-                query.trends.length > 25 ? query.trends.length / 5 : query.trends.length / 2
+                query.trends.length / 2
               )}`}
               
             >
@@ -83,7 +96,7 @@ const Twitter: FunctionComponent<NewsProps> = ({ data }) => {
                         >
                           {item.name}
                         </a>
-                        <p>{TwitterVol(item.tweet_volume)}</p>
+                        <p>{twitterVol(item.tweet_volume)}</p>
                       </div>
                     )
                 )}
