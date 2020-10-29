@@ -57,14 +57,15 @@ const Article = () => {
     fetchData();
   }, []);
 // return (<CardArticle data={NewsApi.getNewsSingle(queryOne)} />);
-  return (<CardArticle 
+  return (
+    <div className={`dev-grid-wrapper__div--column--2 dev-u-padding-default`}>
+  <CardArticle 
     title={query.response.content.webTitle}
     body={query.response.content.fields.body}
     loading={isLoading}
-    />);
-  // return(
-  // <div>Hello</div>
-  // )
+    />
+    </div>);
+    
 };
 
 export default Article;
