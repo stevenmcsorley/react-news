@@ -2,9 +2,6 @@ import React, { FunctionComponent } from "react";
 
 import "./Card.scss";
 
-//  TODO: Needs refactor to uncouple API call inside here
-// and extract interfaces
-
 interface CardProps {
   image?: string;
   title?: string;
@@ -18,7 +15,6 @@ const CardRelated: FunctionComponent<CardProps> = ({
   title,
   onClick,
 }) => {
- 
   const placeholderImage =
     "https://c.pxhere.com/photos/aa/fa/newspaper_news_information_read_press_daily_newspaper_paper_magazines-811573.jpg!d";
   return (
@@ -28,10 +24,7 @@ const CardRelated: FunctionComponent<CardProps> = ({
           <h4 className="dev-u-padding-horizontal card-title">{title}</h4>
         </div>
         <div className="dev-card-base__body dev-card-base__body--grow dev-u-padding-default">
-          <div
-            className="dev-card-base__image"
-            onClick={onClick}
-          >
+          <div className="dev-card-base__image" onClick={onClick}>
             <img src={image ? image : placeholderImage} alt="" />
           </div>
         </div>

@@ -2,8 +2,6 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 
-
-
 import { SingleResponse } from "../interfaces/ISingleArticle";
 import SkeletonCard from "../skeleton/Skeleton";
 
@@ -23,8 +21,6 @@ interface Location {
 }
 
 const Article = () => {
-  
- 
   const [isLoading, setIsLoading] = useState(false);
 
   const [query, setQuery] = useState<{ response: SingleResponse }>({
@@ -41,7 +37,6 @@ const Article = () => {
     },
   });
 
- 
   const location = useLocation<Location>();
 
   const queryOne = {
@@ -56,6 +51,7 @@ const Article = () => {
       try {
         const result = await NewsApi.getNewsSingle(queryOne);
         setQuery(result.data);
+        console.log("queryOne", queryOne);
         setIsLoading(false);
       } catch (error) {
         setIsLoading(false);
@@ -63,7 +59,7 @@ const Article = () => {
     };
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [queryOne.endpoint]);
   return (
     <div>
       {isLoading && <SkeletonCard count={10} grid={2} />}
@@ -81,14 +77,12 @@ const Article = () => {
               <CardRelated
                 title={item.webTitle}
                 image={item.fields.thumbnail}
-                // onClick={handleClick}
                 onClick={() =>
                   history.push({
                     pathname: `/article/${item.id}`,
                     state: { detail: item },
                   })
                 }
-  
               />
             </div>
           ))}
