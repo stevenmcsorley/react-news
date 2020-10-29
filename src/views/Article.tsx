@@ -3,13 +3,15 @@ import { useEffect, useState } from "react";
 
 import { useLocation } from "react-router";
 
-import {SingleResponse} from '../interfaces/ISingleArticle'
+import { SingleResponse } from "../interfaces/ISingleArticle";
+import SkeletonCard from "../skeleton/Skeleton";
 
 import { NewsResults } from "../interfaces/INews";
 import CardArticle from "../components/cards/CardArticle";
+import CardRelated from "../components/cards/CardRelated";
 
 import RepositoryFactory from "../api/respositoryFactory";
-const NewsApi:any = RepositoryFactory.get("newsApi");
+const NewsApi: any = RepositoryFactory.get("newsApi");
 
 interface RouteParams {
   id: string;
@@ -20,7 +22,6 @@ interface Location {
 }
 
 const Article = () => {
-
   const [isLoading, setIsLoading] = useState(false);
 
   const [query, setQuery] = useState<{ response: SingleResponse }>({
@@ -56,16 +57,27 @@ const Article = () => {
     };
     fetchData();
   }, []);
-// return (<CardArticle data={NewsApi.getNewsSingle(queryOne)} />);
   return (
+    <div>  {isLoading && <SkeletonCard count={10} grid={2} />}
     <div className={`dev-grid-wrapper__div--column--2 dev-u-padding-default`}>
-  <CardArticle 
-    title={query.response.content.webTitle}
-    body={query.response.content.fields.body}
-    loading={isLoading}
-    />
-    </div>);
-    
+     
+      <div className="position-relative ">
+      <CardArticle
+        title={query.response.content.webTitle}
+        body={query.response.content.fields.body}
+        loading={isLoading}
+      />
+      </div>
+      <div className="position-relative">
+      {query.response.relatedContent.map((item, index) => (
+        <div key={index}>
+          <CardRelated title={item.webTitle} image={item.fields.thumbnail} />
+        </div>
+      ))}
+      </div>
+    </div>
+    </div>
+  );
 };
 
 export default Article;
