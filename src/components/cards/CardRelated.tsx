@@ -22,7 +22,7 @@ interface CardProps {
 
 
 
-const CardArticle: FunctionComponent<CardProps> = ({
+const CardRelated: FunctionComponent<CardProps> = ({
   loading,
   image,
   body,
@@ -60,7 +60,8 @@ const CardArticle: FunctionComponent<CardProps> = ({
   //   };
   //   fetchData();
   // }, [data, query]);
-
+  const placeholderImage =
+    "https://c.pxhere.com/photos/aa/fa/newspaper_news_information_read_press_daily_newspaper_paper_magazines-811573.jpg!d";
   return (
     <div>
       {loading && <SkeletonCard count={1} grid={2} />}
@@ -122,4 +123,4 @@ const CardArticle: FunctionComponent<CardProps> = ({
   );
 };
 
-export default CardArticle;
+export default CardRelated;

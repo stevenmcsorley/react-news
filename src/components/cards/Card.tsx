@@ -3,11 +3,11 @@ import Skeleton from "react-loading-skeleton";
 import "./Card.scss";
 
 interface CardProps {
-  loading: boolean;
-  image: string;
-  title: string;
-  published: string | Date | number;
-  onClick: any | string;
+  loading?: boolean;
+  image?: string;
+  title?: string;
+  published?: string | Date | number;
+  onClick?: any | string;
 }
 
 interface Image {
