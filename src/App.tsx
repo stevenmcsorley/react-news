@@ -13,6 +13,8 @@ import { CategoryConfig } from "./configs/CategoryConfig";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
+
+
 const Home = React.lazy(() => import("./views/Home"));
 const Category = React.lazy(() => import("./views/Category"));
 const Article = React.lazy(() => import("./views/Article"));
