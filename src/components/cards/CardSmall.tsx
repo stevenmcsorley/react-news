@@ -39,9 +39,10 @@ const CardSmall: FunctionComponent<CardProps> = ({
 
           <div className="small-card--body">
             <h4 className="title" title={title}>{title}</h4>
+            <p className="trailText">{trailText}</p>
           </div>
         </div>
-        <p className="trailText">{trailText}</p>
+        
         {children && (
           <div className="card__body dev-u-padding-default">{children}</div>
         )}

@@ -25,7 +25,7 @@ const Category = ({ category }: Category) => {
     firstGridEnd: 2,
     secondSplitStart: 13,
     secondSplitEnd: 50,
-    secondGridStart: 6,
+    secondGridStart: 3,
   };
   // Move this out in to configs
 

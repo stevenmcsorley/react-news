@@ -1,11 +1,11 @@
 import React, { FunctionComponent } from "react";
 
 import TopNews from "../components/news/NewsFactory";
-import TwitterFeed from "../components/news/TwitterFactory"
+import TwitterFeed from "../components/news/TwitterFactory";
 
 import RepositoryFactory from "../api/respositoryFactory";
-const NewsApi:any = RepositoryFactory.get("newsApi");
-const twitterApi:any = RepositoryFactory.get("twitterApi");
+const NewsApi: any = RepositoryFactory.get("newsApi");
+const twitterApi: any = RepositoryFactory.get("twitterApi");
 
 const Home: FunctionComponent = () => {
   const queryOne = {
@@ -42,15 +42,15 @@ const Home: FunctionComponent = () => {
     firstGridEnd: 2,
     secondSplitStart: 5,
     secondSplitEnd: 50,
-    secondGridStart: 4,
+    secondGridStart: 3,
   };
 
   return (
     <div className="dev-grid-wrapper__div--column--0">
- <h4 className="dev-u-padding-default section-title">Latest Trends on Twitter</h4>
-<TwitterFeed
-      data={twitterApi.getTrends()}
-      />
+      <h4 className="dev-u-padding-default section-title">
+        Latest Trends on Twitter
+      </h4>
+      <TwitterFeed data={twitterApi.getTrends()} />
       <h4 className="dev-u-padding-default section-title">{queryOne.q}</h4>
 
       <TopNews
