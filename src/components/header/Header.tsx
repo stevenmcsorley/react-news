@@ -13,7 +13,7 @@ const Header = () => {
         <div className="header dev-u-padding-default">
           <a href="/" className="logo">
             {/* <h1>React News</h1> */}
-            <img src={logo} alt="React News Trends" />
+            <img src={logo} loading="lazy" alt="React News Trends" />
           </a>
         </div>
       </div>

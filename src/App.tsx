@@ -55,6 +55,8 @@ const App = () => {
                 path={`/search-results`}
                 component={() => <SearchResults />}
               />
+              <Route path="*" component={() => (<div>404 Not found </div>)} />
+
             </Switch>
           </div>
         </Router>

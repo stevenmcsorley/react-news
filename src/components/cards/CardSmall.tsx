@@ -33,12 +33,12 @@ const CardSmall: FunctionComponent<CardProps> = ({
         <div className="dev-grid-wrapper--offset--20-80">
           <div className="image-wrapper">
             <div className="image">
-              <img src={image ? image : placeholderImage} alt="" />
+              <img src={image ? image : placeholderImage} loading="lazy" alt="" />
             </div>
           </div>
 
           <div className="small-card--body">
-            <h4 className="title">{title}</h4>
+            <h4 className="title" title={title}>{title}</h4>
           </div>
         </div>
         <p className="trailText">{trailText}</p>
