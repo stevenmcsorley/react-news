@@ -51,7 +51,6 @@ const Article = () => {
       try {
         const result = await NewsApi.getNewsSingle(queryOne);
         setQuery(result.data);
-        console.log("queryOne", queryOne);
         setIsLoading(false);
       } catch (error) {
         setIsLoading(false);
