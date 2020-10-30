@@ -24,8 +24,6 @@ const QuakeFeed = () => {
     items: [],
   });
 
-  // const [isError, setIsError] = useState(false);
-  // const [errorMsg, setErrorMsg] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -46,7 +44,7 @@ const QuakeFeed = () => {
       <li>
         <ul>
         <li>EARTHQUAKES IN THE PAST HOUR: </li>
-        {query.items.map((item, index) => !isLoading && <li key={index}>{item.title} - </li>)}
+        {query.items.map((item, index) => !isLoading && <li key={index}><a href={item.link} target="_blank" rel="noopener noreferrer">{item.title}</a> - </li>)}
         </ul>
       </li>
     );

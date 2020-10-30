@@ -46,7 +46,7 @@ const WeatherWarningUKFeed = () => {
       <li>
         <ul>
         <li>WEATHER WARNINGS: </li>     
-        {query.items.map((item, index) => !isLoading && <li key={index}>{item.title} - </li>)}
+        {query.items.map((item, index) => !isLoading && <li key={index}><a href={item.link} target="_blank" rel="noopener noreferrer">{item.title}</a> - </li>)}
         </ul>
       </li>
     );

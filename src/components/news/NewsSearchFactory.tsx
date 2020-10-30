@@ -8,6 +8,8 @@ import moment from "moment";
 import CardSearch from "../cards/CardSearch";
 import Paginate from "../pagination/Paginate";
 
+import { TruncateWords } from "../../common/shared";
+
 import { Search } from "../../interfaces/INews";
 
 interface NewsProps {
@@ -105,7 +107,11 @@ const NewsSearch = (NewsProps: NewsProps) => {
                       loading={isLoading}
                       pillarName={item.pillarName}
                       sectionName={item.sectionName}
-                      summary={item.blocks.body[0].bodyTextSummary.split(" ").splice(0,50).join(" ") + '...'}
+                      summary={TruncateWords(
+                        item.blocks.body[0].bodyTextSummary,
+                        50,
+                        "..."
+                      )}
                       title={item.webTitle}
                       published={moment(`${item.webPublicationDate}`).fromNow(
                         true

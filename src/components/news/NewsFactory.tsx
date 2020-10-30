@@ -8,6 +8,8 @@ import moment from "moment";
 import Card from "../cards/Card";
 import CardSmall from "../cards/CardSmall";
 
+import {TruncateWords} from '../../common/shared';
+
 import { News } from "../../interfaces/INews";
 
 interface NewsProps {
@@ -148,7 +150,7 @@ const TopNews: FunctionComponent<NewsProps> = ({ data, pageLayout }) => {
                 key={index}
                 image={item.fields.thumbnail}
                 title={item.fields.headline}
-                trailText={item.fields.trailText.split(" ").splice(0, 14).join(" ") + "..."}
+                trailText={TruncateWords(item.fields.trailText, 14, '...')}
                 onClick={() =>
                   history.push({
                     pathname: `/article/${item.id}`,
@@ -156,7 +158,6 @@ const TopNews: FunctionComponent<NewsProps> = ({ data, pageLayout }) => {
                   })
                 }
               />
-
             ))}
         </div>
       </div>

@@ -1,4 +1,6 @@
 import React, { useEffect, useState, FunctionComponent } from "react";
+import CardTwitter from '../../components/cards/Card-twitter-trend';
+import {TwitterVol} from '../../common/shared'
 
 interface TwitterFeed {
   as_of: string;
@@ -32,20 +34,6 @@ const Twitter: FunctionComponent<NewsProps> = ({ data }) => {
   const [errorMsg, setErrorMsg] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  const twitterVol = (vol: number) => {
-    if (vol !== null) {
-      if (vol > 999 && vol < 999999) {
-        return (vol / 1000).toFixed(1) + "k tweets";
-      } else if (vol > 999999) {
-        return (vol / 1000000).toFixed(1) + "m tweets";
-      } else {
-        return vol;
-      }
-    } else {
-      return "";
-    }
-  };
-
   useEffect(() => {
     async function fetchData() {
       setIsError(false);
@@ -53,7 +41,6 @@ const Twitter: FunctionComponent<NewsProps> = ({ data }) => {
       try {
         const result = await data;
         setQuery(result.data);
-        console.log("result", result)
         setIsLoading(false);
       } catch (error) {
         setErrorMsg(error.message);
@@ -88,16 +75,12 @@ const Twitter: FunctionComponent<NewsProps> = ({ data }) => {
                 .map(
                   (item, index) =>
                     !isLoading && (
-                      <div key={index}>
-                        <a
-                          href={item.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          {item.name}
-                        </a>
-                        <p>{twitterVol(item.tweet_volume)}</p>
-                      </div>
+                      <CardTwitter 
+                      key={index}
+                      url={item.url}
+                      hashtag={item.name}
+                      volume={TwitterVol(item.tweet_volume)}
+                      />
                     )
                 )}
             </div>
