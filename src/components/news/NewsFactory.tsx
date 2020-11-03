@@ -89,6 +89,7 @@ const TopNews: FunctionComponent<NewsProps> = ({ data, pageLayout }) => {
                       key={index}
                       loading={isLoading}
                       image={item.fields.thumbnail}
+                      type={item.type}
                       title={item.fields.headline}
                       published={moment(`${item.webPublicationDate}`).fromNow(
                         true

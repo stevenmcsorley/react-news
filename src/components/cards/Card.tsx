@@ -6,6 +6,7 @@ interface CardProps {
   loading?: boolean;
   image?: string;
   title?: string;
+  type?: string;
   published?: string | Date | number;
   onClick?: any | string;
 }
@@ -25,6 +26,7 @@ const Card: FunctionComponent<CardProps> = ({
   published,
   children,
   onClick,
+  type
 }) => {
     const placeholderImage = "https://c.pxhere.com/photos/aa/fa/newspaper_news_information_read_press_daily_newspaper_paper_magazines-811573.jpg!d"
   return (
@@ -32,6 +34,7 @@ const Card: FunctionComponent<CardProps> = ({
       <div className="dev-card-base dev-flex-column">
         <div className="dev-card-base__body dev-card-base__body--grow">
         <span className="card-badge">{published}</span>
+  <span className={`article-type--${type === 'liveblog' ? 'liveblog' : 'article'}`}>{type === 'liveblog'? 'Live': ''}</span>
           <div className="dev-card-base__image" onClick={onClick}>
             {!loading && <Skeleton height={300} />}
             <img

@@ -76,3 +76,20 @@ span.title{
     font-weight:bold;
     font-size: 15px;
   }
+
+  .article-type{
+
+    &--article{
+      display:none;
+    }
+
+    &--liveblog{
+      padding: 4px 8px;
+      background: red;
+      color:white;
+      position: absolute;
+      right: 0;
+      top: 0;
+      z-index: 4;
+    }
+  }
