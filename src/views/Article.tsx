@@ -70,7 +70,7 @@ const Article = () => {
             loading={isLoading}
           />
         </div>
-        <div className="position-relative">
+        <div className="position-relative max-height-300">
           {query.response.relatedContent.map((item, index) => (
             <div key={index}>
               <CardRelated
