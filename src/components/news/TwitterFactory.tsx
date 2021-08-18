@@ -61,7 +61,6 @@ const Twitter: FunctionComponent<NewsProps> = ({ data }) => {
           className={`dev-grid-wrapper__div--column--0 dev-u-padding-default`}
         >
           <div>
-            {isError && <div>Twitter Trends will be back soon</div>}
 
             <div
             id="twitter_trends"
@@ -70,6 +69,7 @@ const Twitter: FunctionComponent<NewsProps> = ({ data }) => {
               )}`}
               
             >
+              {isError && <div>Something went wrong</div>}
               {query.trends
                 .sort((a, b) => b.tweet_volume - a.tweet_volume)
                 .map(
