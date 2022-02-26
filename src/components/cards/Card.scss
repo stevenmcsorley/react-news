@@ -41,15 +41,12 @@ span.title{
       text-align: left;
       font-weight:bold;
       font-size: 15px;
+      margin: 8px;
       cursor: pointer;
 
       &:hover{
           text-decoration: underline;
       }
-    }
-  
-    .image-wrapper{
-      margin-right: 8px;
     }
   
     .image{
@@ -66,7 +63,7 @@ span.title{
       width: 100%;
       font-size:12px;
       line-height: 12px;
-      margin:4px 0px 0px 0px;
+      margin:4px 8px 0px;
       padding:0;
     }
   }
