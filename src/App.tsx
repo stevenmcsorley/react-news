@@ -27,7 +27,7 @@ const App = () => {
 
       <React.Suspense fallback={<Skeleton duration={10} height={580} />}>
         <Router>
-          <div>
+          <div className="overflow-hidden">
             <MainNavbar />
             <Switch>
               <Route exact path="/" component={() => <Home />} />
