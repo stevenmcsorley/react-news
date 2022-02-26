@@ -8,7 +8,7 @@ import "./Header.scss";
 import logo from "../../logo.png"
 const Header = () => {
   return (
-    <div>
+    <div className="overflow-hidden">
       <div className={`dev-grid-wrapper__div--column--0`}>
         <div className="header dev-u-padding-default">
           <a href="/" className="logo">
