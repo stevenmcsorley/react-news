@@ -72,7 +72,7 @@ const Article = () => {
         </div>
         <div className="position-relative">
           {query.response.relatedContent.map((item, index) => (
-            <div key={index}>
+            <div key={index} class="flex-zero">
               <CardRelated
                 title={item.webTitle}
                 image={item.fields.thumbnail}
