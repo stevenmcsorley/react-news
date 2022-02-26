@@ -47,6 +47,10 @@
       width: 100%;
       height: auto;
       opacity:0.99;
+      image-rendering: auto;
+      image-rendering: crisp-edges;
+      image-rendering: pixelated;
+      image-rendering: -webkit-optimize-contrast;
       transition: all 0.3s ease-in-out;
 
       &:hover{
