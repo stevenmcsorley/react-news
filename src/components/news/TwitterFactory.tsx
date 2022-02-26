@@ -56,7 +56,7 @@ const Twitter: FunctionComponent<NewsProps> = ({ data }) => {
     return <h4>Alernative Content</h4>;
   } else {
     return (
-      <div>
+      <div className="overflow-hidden">
         <div
           className={`dev-grid-wrapper__div--column--0 dev-u-padding-default`}
         >
