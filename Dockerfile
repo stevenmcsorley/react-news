@@ -4,5 +4,5 @@ COPY . .
 RUN npm ci && npm run build
 
 # optional use nginx:alpine here too
-FROM nginx:1.17
+FROM nginx:mainline
 COPY --from=0 /app/build /usr/share/nginx/html
